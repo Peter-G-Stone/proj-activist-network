@@ -40,6 +40,9 @@ Comment
         content
         user_id
         post_id
+    groups_users
+        belongs_to user
+        belongs_to group
         
 
 
