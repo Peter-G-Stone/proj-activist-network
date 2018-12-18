@@ -3,10 +3,11 @@
 User
     Admin?
     group-admin- ie manages group profile?
-    has many groups
+    has_and_belongs_to_many :groups (need join table: groups_users)
+        https://guides.rubyonrails.org/association_basics.html#the-has-and-belongs-to-many-association
     has many commented on posts thru comments
 Group
-    has many users
+    has_and_belongs_to_many :users
     has many events
     ensure only group-admins can edit event?
 Event
@@ -39,11 +40,16 @@ Comment
         content
         user_id
         post_id
+        
+
 
 
 # Any Unusual Controller Actions? What does each model need?
 
 # Permissions/Authorization etc
 
-# 
+# Validations?
+
+# Scope method?
+
 
