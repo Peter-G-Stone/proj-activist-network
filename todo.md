@@ -12,6 +12,7 @@ Group
     ensure only group-admins can edit event?
 Event
     belongs to group
+    event-admins?
 Post
     has many commenters thru comments
     belongs to author/user
@@ -43,11 +44,35 @@ Comment
     groups_users
         belongs_to user
         belongs_to group
+        enoch says
+            this could have the role attribute of the user's role in the group
+            this table could hold a boolean - admin
+            or could hold a role variable - admin vs group owner vs default
+    events_users
+        belongs_to user
+        belongs_to event
+        rsvp? bool
+
+
+
+
+Class User
+    has_many :events, through: :groups, source: group_events
+end
+
+
+user.events = ALL THE EVENTS I RSVPd
+user.all_events = ALL MY GRPUPS EVENTS
+
+
+
+    
         
 
 
 
 # Any Unusual Controller Actions? What does each model need?
+    added Registrations controller with enoch, it's part of using devise
 
 # Permissions/Authorization etc
 
@@ -55,4 +80,12 @@ Comment
 
 # Scope method?
 
+
+
+
+# MVP
+    admin stuff might not be a part of the MVP
+
+# use devise
+    read the documentation duh
 
