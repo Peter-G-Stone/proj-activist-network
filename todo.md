@@ -21,7 +21,24 @@ Comment
     
 
 # DB structure
-    
+    Users
+        name
+        email
+        password_digest
+        bio
+    Groups
+        name
+        summary
+    Event
+        title
+        datetime
+        summary
+    post
+        content
+    comment
+        content
+        user_id
+        post_id
 
 
 # Any Unusual Controller Actions? What does each model need?
