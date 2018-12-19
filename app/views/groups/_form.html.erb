@@ -1,7 +1,7 @@
 <%= form_for group do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, :size => 80 %> <br>
   <%= f.label :summary %>
-  <%= f.text_field :summary, :size=> 150 %>
+  <%= f.text_field :summary, :size => 110 %> <br>
   <%= f.submit %>
 <% end %>

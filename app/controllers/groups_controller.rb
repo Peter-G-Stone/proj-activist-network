@@ -27,14 +27,13 @@ class GroupsController < ApplicationController
     end
   
     def update
-  
-    #   @attraction.update(attraction_params)
-    #   redirect_to attraction_path(@attraction)
+      @group.update(group_params)
+      redirect_to groups_path
     end
   
     private
-      def attraction_params
-        # params.require(:attraction).permit(:name, :nausea_rating, :happiness, :tickets, :min_height)
+      def group_params
+        params.require(:group).permit(:name, :summary)
       end
   
       def set_group
