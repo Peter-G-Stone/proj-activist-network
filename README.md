@@ -2,8 +2,8 @@
 
 
 Welcome to the Activist Network. 
-The purpose of this project is to allow for a social network optimized for the connection and collaboration of progressive movements. 
-Please stay tuned for further developments in the project, as well as a more detailed ReadMe.
+The purpose of this project is to create the optimal social network for connecting progressive activist groups in order to encourage collaboration and coordination.
+Please stay tuned for further developments in the project, as well as a more detailed ReadMe. ;)
 
 
 
