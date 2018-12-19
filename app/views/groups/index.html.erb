@@ -1,0 +1,10 @@
+<h1>Activist Network: Groups</h1>
+
+<ul>
+
+    <% @groups.each do |group| %>
+        <li><%= render partial: "group", locals: {group: group}%></li>
+        <br>
+    <% end %>
+
+</ul>
