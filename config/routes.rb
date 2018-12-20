@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   #custom routes:
-  get '/groups/:id/join_group'
+  get '/groups/:id/join_group', to: 'groups#join_group'
   
 
   #standard routes:
