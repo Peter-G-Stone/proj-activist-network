@@ -32,11 +32,13 @@ class GroupsController < ApplicationController
 
     def join_group
       @group.users << current_user
+      flash[:notice] = "You successfully joined this group."
       redirect_to group_path(@group)
     end
 
     def leave_group
       @group.users -= [current_user]
+      flash[:notice] = "You successfully left this group."
       redirect_to group_path(@group)
     end
 
