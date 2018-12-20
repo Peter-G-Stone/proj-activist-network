@@ -6,7 +6,6 @@ class GroupsController < ApplicationController
 
 
     def index
-    #   @attractions = Attraction.all
         @groups = Group.all
     end
   
@@ -14,7 +13,7 @@ class GroupsController < ApplicationController
     end
   
     def new
-    #   @attraction = Attraction.new
+      @group = Group.new
     end
   
     def create
