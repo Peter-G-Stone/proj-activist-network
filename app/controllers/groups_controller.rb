@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-    before_action :set_group, only: [:show, :edit, :update, :join_group]
+    before_action :set_group, only: [:show, :edit, :update, :join_group, :leave_group]
     before_action :authenticate_user!
 
 
@@ -32,10 +32,15 @@ class GroupsController < ApplicationController
 
     def join_group
       @group.users << current_user
-      binding.pry
       redirect_to group_path(@group)
     end
-  
+
+    def leave_group
+      @group.users -= [current_user]
+      redirect_to group_path(@group)
+    end
+
+
     private
       def group_params
         params.require(:group).permit(:name, :summary)
@@ -46,4 +51,4 @@ class GroupsController < ApplicationController
       end
   
   end
-  
+  # binding.pry

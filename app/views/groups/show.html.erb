@@ -13,7 +13,8 @@
 
 <br><br>
 
-<% if !@group_users.include?(current_user) %>
-    <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
+<% if @group_users.include?(current_user) %>
+    <%= link_to "Leave Group", "/groups/#{@group.id}/leave_group" %>
 <% else  %>
+    <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
 <% end %>
