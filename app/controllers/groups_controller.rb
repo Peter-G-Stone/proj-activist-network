@@ -17,6 +17,8 @@ class GroupsController < ApplicationController
     end
   
     def create
+      group = Group.create(group_params)
+      redirect_to groups_path(group)
     #   attraction = Attraction.create(attraction_params)
     #   redirect_to attraction_path(attraction)
     end
