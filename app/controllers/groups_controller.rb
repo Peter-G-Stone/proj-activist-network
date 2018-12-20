@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
     end
   
     def show
+      @group_users = @group.users
     end
   
     def new
@@ -19,12 +20,9 @@ class GroupsController < ApplicationController
     def create
       group = Group.create(group_params)
       redirect_to groups_path(group)
-    #   attraction = Attraction.create(attraction_params)
-    #   redirect_to attraction_path(attraction)
     end
   
-    def edit
-      
+    def edit  
     end
   
     def update
@@ -39,10 +37,6 @@ class GroupsController < ApplicationController
   
       def set_group
         @group = Group.find(params[:id])
-      end
-  
-      def set_user
-        # @user = current_user
       end
   
   end
