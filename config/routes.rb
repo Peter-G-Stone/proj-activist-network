@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
 
+  #custom routes:
+  get '/groups/:id/join_group'
   
-  
+
+  #standard routes:
   resources :groups
   devise_for :users, :controllers => { registrations: 'registrations' }
 

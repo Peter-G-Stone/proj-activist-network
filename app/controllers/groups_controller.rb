@@ -29,6 +29,10 @@ class GroupsController < ApplicationController
       @group.update(group_params)
       redirect_to groups_path
     end
+
+    def join_group
+      binding.pry
+    end
   
     private
       def group_params

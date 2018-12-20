@@ -10,3 +10,10 @@
         <li>  <%= user.name %> </li>
     <% end %>
 </ul>
+
+<br><br>
+
+<% if @group_users.include?(current_user) %>
+    <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
+<% else  %>
+<% end %>
