@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-    before_action :set_group, only: [:show, :edit, :update]
+    before_action :set_group, only: [:show, :edit, :update, :join_group]
     before_action :authenticate_user!
 
 
@@ -31,7 +31,9 @@ class GroupsController < ApplicationController
     end
 
     def join_group
+      @group.users << current_user
       binding.pry
+      redirect_to group_path(@group)
     end
   
     private

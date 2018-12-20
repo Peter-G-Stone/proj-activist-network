@@ -10,10 +10,11 @@
   </head>
 
   <body>
-    <%= link_to "Groups", groups_path %>
-    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> <br> <br>
-    Activist Network - Logged in as: <%= current_user.name %> <br> <br>
-
+    <% if current_user %>
+      <%= link_to "Groups", groups_path %>
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> <br> <br>
+      Activist Network - Logged in as: <%= current_user.name %> <br> <br>
+    <% end %>
     ---------------------------------------------------- <br> <br>
     
     
