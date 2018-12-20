@@ -19,7 +19,9 @@ class GroupsController < ApplicationController
   
     def create
       group = Group.create(group_params)
-      redirect_to groups_path(group)
+      group.users << current_user
+      flash[:notice] = "You successfully created a group!"
+      redirect_to group_path(group)
     end
   
     def edit  
