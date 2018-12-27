@@ -4,13 +4,13 @@
 
 
 <h3> Posts: </h3>
-
+<h5><%= link_to "New Post", new_group_post_path(@group.id) %> </h5>
 <ul>
 <% @group_posts.each do |post| %>
 
     <li><%= post.content %></li>
     <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p> 
-    <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
+    <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
 
 <% end %>
 </ul>

@@ -1,0 +1,6 @@
+<%= form_for post do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content, :size => 80 %> <br>
+  <%= f.hidden_field :group_id, value: post.group.id %>
+  <%= f.submit %>
+<% end %>
