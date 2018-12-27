@@ -12,13 +12,15 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        binding.pry
         @post = Post.find(params[:id])
+        @post.destroy
+        flash[:notice] = "Post deleted."
+        redirect_to group_path(@post.group)
     end
 
     private
 
     def post_params
-        params.require(:post).permit(:content, :group_id)
+        params.require(:post).permit(:content, :group_id, :id)
     end
 end

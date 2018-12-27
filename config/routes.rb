@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #standard routes:
   #
   #
-  resources :posts, only: [:create, :update]
+  resources :posts
   resources :groups do 
     resources :posts, except: [:index, :show]
   end

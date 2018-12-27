@@ -12,7 +12,7 @@
     <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p> 
     <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
     <p>&nbsp&nbsp&nbsp&nbsp <%= link_to "Edit Post", edit_group_post_path(@group.id) %> </p>
-    <p>&nbsp&nbsp&nbsp&nbsp <%= button_to "Delete Post", group_post_path(@group.id), method: :delete %> </p>
+    <p>&nbsp&nbsp&nbsp&nbsp <%= button_to "Delete Post", post_path(post.id), method: :delete %> </p>
 
 <% end %>
 </ul>
