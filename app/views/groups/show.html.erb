@@ -9,7 +9,8 @@
 <% @group_posts.each do |post| %>
 
     <li><%= post.content %></li>
-    <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p>
+    <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p> 
+    <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
 
 <% end %>
 </ul>

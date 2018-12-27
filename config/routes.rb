@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #standard routes:
   # resources :posts
   resources :groups do 
-    resources :posts, except: :index, :show
+    resources :posts, except: [:index, :show]
   end
   devise_for :users, :controllers => { registrations: 'registrations' }
 
