@@ -25,6 +25,8 @@ def seed_me
     izaak.groups << Group.all
     bears.users << david
     banjo.users << john
+
+    post = Post.create(content: "THIS IS MY POST", user: peter)
 end
 
 seed_me
