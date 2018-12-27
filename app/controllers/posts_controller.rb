@@ -11,6 +11,11 @@ class PostsController < ApplicationController
         redirect_to group_path(@post.group)
     end
 
+    def destroy
+        binding.pry
+        @post = Post.find(params[:id])
+    end
+
     private
 
     def post_params
