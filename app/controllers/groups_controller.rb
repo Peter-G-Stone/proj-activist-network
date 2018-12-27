@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
   
     def show
       @group_users = @group.users
+      @group_posts = @group.posts
     end
   
     def new

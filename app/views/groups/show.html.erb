@@ -3,7 +3,19 @@
 <p> <%= @group.summary %> </p>
 
 
-<p> Members: </p>
+<h3> Posts: </h3>
+
+<ul>
+<% @group_posts.each do |post| %>
+
+    <li><%= post.content %></li>
+    <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p>
+
+<% end %>
+</ul>
+
+
+<h3> Members: </h3>
 
 <ul>
     <% @group_users.each do |user| %>
