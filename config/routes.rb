@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   get '/groups/:id/join_group', to: 'groups#join_group'
   get '/groups/:id/leave_group', to: 'groups#leave_group'
   
-
+  
   #standard routes:
+  resources :posts
   resources :groups
   devise_for :users, :controllers => { registrations: 'registrations' }
 

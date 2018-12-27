@@ -12,9 +12,8 @@ def seed_me
     banjo = Group.create(name: "Banjo Revival", summary: "We provide banjos to struggling schoolchildren in Appalachia.")
     Group.create(name: "Aquatic Liberation Front", summary: "We take the plastic rings off of fish.")
     Group.create(name: "Save the Christmas Trees", summary: "Every christmas, millions of trees are murdered in cold sap. This is wrong. It must stop now.")
-    Group.create(name: "Hippies Must Go", summary: "Hippies are giving all leftists a bad name with their unscientific beliefs.")
     bears = Group.create(name: "Guitars for Bears", summary: "We give guitars to bears. Don't ask questions.")
-
+    
 
 
     peter = User.create(name: "Peter", email: "pedrostone@gmail.com", password: "password", bio: "I am your creator.")
