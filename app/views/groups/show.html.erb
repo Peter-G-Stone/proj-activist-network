@@ -34,7 +34,8 @@
             <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Written by: <%= comment.user.name %></p> 
             <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
             <% if comment.user == current_user %>
-                
+                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= link_to "Edit Comment", edit_post_comment_path(comment.id) %> </p>
+                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= button_to "Delete Comment", post_comment_path(comment.id), method: :delete %> </p>
             <% end %>
         <% end %>
     <% end %>
