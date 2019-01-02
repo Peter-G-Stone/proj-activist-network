@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   #standard routes:
   #
   #
+  resources :comments, only: [:index] # this has to be here for form_for to work?
+
   resources :posts do
     resources :comments, except: [:index, :show]
   end
