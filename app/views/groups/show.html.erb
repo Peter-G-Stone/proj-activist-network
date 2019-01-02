@@ -2,17 +2,37 @@
 
 <p> <%= @group.summary %> </p>
 
+<% if @group_users.include?(current_user) %>
+    <%= link_to "Leave Group", "/groups/#{@group.id}/leave_group" %>
+<% else  %>
+    <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
+<% end %>
 
 <h3> Posts: </h3>
-<h5><%= link_to "New Post", new_group_post_path(@group.id) %> </h5>
+
+<% if @group_users.include?(current_user) %>
+    <h5><%= link_to "New Post", new_group_post_path(@group.id) %> </h5>
+<% end %>
+
 <ul>
 <% @group_posts.reverse_each do |post| %>
 
     <li><%= post.content %></li>
     <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p> 
     <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
-    <p>&nbsp&nbsp&nbsp&nbsp <%= link_to "Edit Post", edit_post_path(post.id) %> </p>
-    <p>&nbsp&nbsp&nbsp&nbsp <%= button_to "Delete Post", post_path(post.id), method: :delete %> </p>
+    <% if post.user == current_user %>
+        <p>&nbsp&nbsp&nbsp&nbsp <%= link_to "Edit Post", edit_post_path(post.id) %> </p>
+        <p>&nbsp&nbsp&nbsp&nbsp <%= button_to "Delete Post", post_path(post.id), method: :delete %> </p>
+    <% end %>
+    <% if !post.comments.empty? %>
+        <p>&nbsp&nbsp&nbsp&nbsp - Comments:</p> 
+        <% post.comments.reverse_each do |comment| %>
+        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= comment.content %></p> 
+        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Written by: <%= comment.user.name %></p> 
+        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
+        <% end %>
+
+    <% end %>
 
 <% end %>
 </ul>
