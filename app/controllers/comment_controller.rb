@@ -1,8 +1,8 @@
 class CommentController < ApplicationController
   def new
-    @post = Post.new
-        @post.user = current_user
-        @post.group = Group.find(params[:group_id])
+    @comment = Comment.new
+    @comment.user = current_user
+    @comment.post = Post.find(params[:post_id])
   end
 
   def create
