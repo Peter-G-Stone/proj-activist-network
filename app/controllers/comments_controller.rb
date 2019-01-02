@@ -6,6 +6,8 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @comment = Comment.create(content: comment_params[:content], user: current_user, post: Post.find(comment_params[:post_id]))
+    redirect_to group_path(@comment.post.group)
   end
 
   def edit
@@ -15,5 +17,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content, :post_id, :id)
   end
 end
