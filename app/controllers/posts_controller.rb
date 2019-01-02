@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
     def destroy
         @post = Post.find(params[:id])
+        @post.comments.each {|c| c.destroy}
         @post.destroy
         flash[:notice] = "Post deleted."
         redirect_to group_path(@post.group)
