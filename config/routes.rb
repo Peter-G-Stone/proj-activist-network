@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get 'comment/new'
-  get 'comment/create'
-  get 'comment/edit'
-  get 'comment/update'
-  get 'comment/destroy'
   #custom routes:
   #
   #
@@ -14,11 +9,9 @@ Rails.application.routes.draw do
   
   
   #standard routes:
-  #
-  #
-  resources :comments
+  
 
-  resources :posts do
+  resources :posts, only: [] do
     resources :comments, except: [:index, :show]
   end
   resources :groups do 

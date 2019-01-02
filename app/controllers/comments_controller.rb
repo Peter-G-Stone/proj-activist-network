@@ -11,12 +11,21 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @comment = Comment.find(params[:id])
+
+    @comment.update(content: comment_params[:content])
+    redirect_to group_path(@comment.post.group)
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    flash[:notice] = "Comment deleted."
+    redirect_to group_path(@comment.post.group)
   end
 
   private
