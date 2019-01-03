@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  root 'groups#index'
 
 
   #custom routes:
@@ -21,10 +23,14 @@ Rails.application.routes.draw do
   resources :groups do 
     resources :posts, except: [:index, :show]
   end
+
+
+
+  # below is what digital oceans tutorial wants me to change, but how will this affect my regular registrations? ...
   devise_for :users, :controllers => { registrations: 'registrations' }
 
 
-  root 'groups#index'
+
 
 
 
