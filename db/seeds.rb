@@ -16,7 +16,7 @@ def seed_me
     
 
 
-    peter = User.create(name: "Peter", email: "pedrostone@gmail.com", password: "password", bio: "I am your creator.")
+    peter = User.create(name: "Peter", email: "pmail@gmail.com", password: "password", bio: "I am your creator.")
     david = User.create(name: "David", email: "dmail@gmail.com", password: "password", bio: "Loves fish but not to eat.")
     izaak = User.create(name: "Izaak", email: "imail@gmail.com", password: "password", bio: "River person.")
     john = User.create(name: "John", email: "jmail@gmail.com", password: "password", bio: "Plays too many video games.")
