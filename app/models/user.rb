@@ -14,8 +14,8 @@ class User < ApplicationRecord
          # note - the following method, as well as the last two omniauth options just added to the above devise command, are on the rec of a tutorial from digital ocean - 
          # How To Configure Devise and OmniAuth for Your Rails Application
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
+    where(uid: auth.uid).first_or_create do |user|
+      # user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
