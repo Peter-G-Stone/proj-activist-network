@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get '/groups/:id/join_group', to: 'groups#join_group'
   get '/groups/:id/leave_group', to: 'groups#leave_group'
 
-  # #omniauth routes:
-  # get '/auth/facebook/callback' => 'sessions#create'
+  #omniauth routes:
+  get '/auth/facebook/callback' => 'sessions#create'
 
   
   
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
 
 
-  # below is what digital oceans tutorial wants me to change, but how will this affect my regular registrations? ...
+ 
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'callbacks' }
 
 
