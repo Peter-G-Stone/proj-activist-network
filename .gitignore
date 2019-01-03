@@ -32,3 +32,6 @@
 
 #Ignore my private notes directory
 /notes/*
+
+#Ignore my facebook auth secrets
+*.env

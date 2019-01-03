@@ -5,7 +5,7 @@ ruby '2.3.3'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-
+gem 'dotenv-rails'
 
 
 gem 'devise'
