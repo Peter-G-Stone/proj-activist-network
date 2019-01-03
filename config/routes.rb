@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
 
   # below is what digital oceans tutorial wants me to change, but how will this affect my regular registrations? ...
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'callbacks' }
 
 
 
