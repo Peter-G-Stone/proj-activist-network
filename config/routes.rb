@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
   end
   resources :groups do 
-    resources :posts, except: [:index, :show]
+    resources :posts, except: [:index]
   end
 
   

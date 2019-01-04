@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     @comment.update(content: comment_params[:content])
-    redirect_to group_path(@comment.post.group)
+    redirect_to group_post_path(@comment.post.group, @comment.post)
   end
 
   def destroy
