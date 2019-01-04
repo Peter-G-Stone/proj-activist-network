@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_and_belongs_to_many :groups
+  has_and_belongs_to_many :admin_groups, class_name: "Group"
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
