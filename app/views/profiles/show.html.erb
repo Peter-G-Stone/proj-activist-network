@@ -20,7 +20,7 @@
 <h4><%= @user.name %>'s Recent Posts: </h4>
 <ul>
 
-    <% @user_posts.each do |post| %>
+    <% @user_posts.last(10).reverse_each do |post| %>
 
         <li><%= link_to post.content, group_post_path(post.group, post) %> <br>
             In this group: <br>
@@ -38,7 +38,7 @@
 <h4><%= @user.name %>'s Recent Comments: </h4>
 <ul>
 
-   <% @user_comments.each do |comment| %>
+   <% @user_comments.last(10).reverse_each do |comment| %>
 
         <li>
             <%= @user.name %> wrote this: <br>
