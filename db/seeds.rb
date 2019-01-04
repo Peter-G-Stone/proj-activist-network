@@ -26,10 +26,14 @@ def seed_me
     bears.users << david
     banjo.users << john
 
-    Post.create(content: "Welcome to PETE! We're so glad to have you in our group.", user: peter, group: emu)
-    Post.create(content: "We need a meeting - please post your availability on Dec 29 and 30.", user: peter, group: emu)
+    post1 = Post.create(content: "Welcome to PETE! We're so glad to have you in our group.", user: peter, group: emu)
+    post2 = Post.create(content: "We need a meeting - please post your availability on Dec 29 and 30.", user: peter, group: emu)
     Post.create(content: "Please join! We need more members!!!", user: izaak, group: walrus)
     Post.create(content: "It takes a village to save walruses!", user: izaak, group: walrus)
+
+    Comment.create(content: "We're glad to be here!", post: post1, user: izaak)
+    Comment.create(content: "I'm not available", post: post2, user: izaak)
+    Comment.create(content: "You're fired", post: post2, user: peter)
 end
 
 seed_me

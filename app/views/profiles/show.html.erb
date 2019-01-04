@@ -4,7 +4,11 @@
 <h2><%= @user.name %>'s Groups: </h2>
 <ul>
 
-    <% %>
+    <% @user_groups.each do |group| %>
+
+        <li><%= link_to group.name, group_path(group) %></li>
+
+    <% end %>
 
 </ul>
 
@@ -12,8 +16,32 @@
 
 
 <h2><%= @user.name %>'s Recent Posts: </h2>
+<ul>
+
+    <% @user_posts.each do |post| %>
+
+        <li>In this group: <%= link_to post.group.name, group_path(post.group) %> <br>
+            Peter wrote this: <br>
+            <%= post.content %>
+        </li>
+
+    <% end %>
+
+</ul>
 
 
 
 
 <h2><%= @user.name %>'s Recent Comments: </h2>
+<ul>
+
+   <% @user_comments.each do |comment| %>
+
+        <li>In this group: <%= link_to comment.post.group.name, group_path(comment.post.group) %> <br>
+            Peter wrote this: <br>
+            <%= comment.content %>
+        </li>
+
+    <% end %>
+
+</ul>

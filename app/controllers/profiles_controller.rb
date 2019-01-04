@@ -10,6 +10,9 @@ class ProfilesController < ApplicationController
     end
   
     def show
+      @user_groups = @user.groups
+      @user_posts = @user.posts 
+      @user_comments = @user.comments 
     end
    
     def edit  
