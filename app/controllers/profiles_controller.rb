@@ -15,13 +15,13 @@ class ProfilesController < ApplicationController
       @user_comments = @user.comments 
     end
    
-    def edit  
-    end
+    # def edit  
+    # end
   
-    def update
-      @user.update(user_params)
-      redirect_to user_path
-    end
+    # def update
+    #   @user.update(user_params)
+    #   redirect_to user_path
+    # end
 
 
 
