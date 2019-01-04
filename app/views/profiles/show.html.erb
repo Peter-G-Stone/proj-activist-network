@@ -1,7 +1,9 @@
-<h1><%= @user.name %>'s Profile </h1>
+<h1><%= @user.name %></h1>
+
+<h3>Bio: <%= @user.bio %></h3>
 
 
-<h2><%= @user.name %>'s Groups: </h2>
+<h4><%= @user.name %>'s Groups: </h4>
 <ul>
 
     <% @user_groups.each do |group| %>
@@ -15,14 +17,15 @@
 
 
 
-<h2><%= @user.name %>'s Recent Posts: </h2>
+<h4><%= @user.name %>'s Recent Posts: </h4>
 <ul>
 
     <% @user_posts.each do |post| %>
 
-        <li>In this group: <%= link_to post.group.name, group_path(post.group) %> <br>
-            <%= @user.name %> wrote this: <br>
-            <%= post.content %>
+        <li><%= link_to post.content, group_post_path(post.group, post) %> <br>
+            In this group: <br>
+            <%= link_to post.group.name, group_path(post.group) %> <br> <br>
+
         </li>
 
     <% end %>
@@ -32,14 +35,17 @@
 
 
 
-<h2><%= @user.name %>'s Recent Comments: </h2>
+<h4><%= @user.name %>'s Recent Comments: </h4>
 <ul>
 
    <% @user_comments.each do |comment| %>
 
-        <li>In this group: <%= link_to comment.post.group.name, group_path(comment.post.group) %> <br>
+        <li>
             <%= @user.name %> wrote this: <br>
-            <%= comment.content %>
+            "<%= comment.content %>" <br>
+            On this post: <br>
+            <%= link_to comment.post.content, group_post_path(comment.post.group, comment.post) %> 
+            <br><br>
         </li>
 
     <% end %>
