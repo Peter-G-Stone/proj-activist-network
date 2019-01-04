@@ -35,4 +35,3 @@ class ProfilesController < ApplicationController
       end
   
   end
-  # binding.pry
