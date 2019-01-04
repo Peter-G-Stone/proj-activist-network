@@ -10,8 +10,14 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.create(content: post_params[:content], group: Group.find(post_params[:group_id]), user: current_user)
-        redirect_to group_path(@post.group)
+        @post = Post.new(content: post_params[:content], group: Group.find(post_params[:group_id]), user: current_user)
+        if @post.save
+            redirect_to group_path(@post.group)
+        else
+            messages = ""
+            flash[:notice] = @post.errors.full_messages.map {|msg| messages + msg + ". "}[0]
+            redirect_to new_group_post_path(post_params[:group_id])
+        end
     end
 
     def edit
@@ -21,9 +27,18 @@ class PostsController < ApplicationController
     def update
         @post = Post.find(params[:id])
 
-        @post.update(content: post_params[:content])
-        redirect_to group_path(@post.group)
+        if @post.update(content: post_params[:content])
+            redirect_to group_path(@post.group)
+        else
+            messages = ""
+            flash[:notice] = @post.errors.full_messages.map {|msg| messages + msg + ". "}[0]
+            redirect_to edit_group_post_path(post_params[:group_id])
+        end 
     end 
+
+    def show
+        @post = Post.find(params[:id])
+    end
 
     def destroy
         @post = Post.find(params[:id])
