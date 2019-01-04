@@ -18,7 +18,7 @@
 <% @group_posts.reverse_each do |post| %>
 
     <h3><%= post.content %></h3>
-    <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= post.user.name %></p> 
+    <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= link_to post.user.name, profile_path(post.user) %></p> 
     <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
     <p><%= link_to "Create Comment", new_post_comment_path(post.id) %></p>
     <% if post.user == current_user %>
@@ -31,7 +31,7 @@
         
         <% post.comments.each do |comment| %>
             <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= comment.content %></p> 
-            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Written by: <%= comment.user.name %></p> 
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Written by: <%= link_to comment.user.name, profile_path(comment.user) %></p> 
             <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
             <% if comment.user == current_user %>
                 <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= link_to "Edit Comment", edit_post_comment_path(comment.id, post.id) %> </p>
