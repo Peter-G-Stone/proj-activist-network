@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_01_03_180421) do
     t.datetime "updated_at", null: false
     t.integer "group_id"
     t.integer "user_id"
-    t.boolean "admin"
+    t.boolean "admin", default: false
   end
 
   create_table "posts", force: :cascade do |t|

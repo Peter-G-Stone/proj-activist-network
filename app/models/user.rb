@@ -26,7 +26,11 @@ class User < ApplicationRecord
   end
 
 
+  def group_link(group)
+    self.groups_user.find{|g_u| g_u.group_id == group.id} 
+  end
+
   def admin?(group)
-    !!self.groups_user.find{|g_u| g_u.group_id == group.id}.admin 
+    !!self.groups_user.find{|g_u| g_u.group_id == group.id}.admin
   end
 end
