@@ -24,4 +24,9 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+
+  def admin?(group)
+    !!self.groups_user.find{|g_u| g_u.group_id == group.id}.admin 
+  end
 end
