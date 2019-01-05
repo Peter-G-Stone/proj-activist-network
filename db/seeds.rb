@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 def seed_me
-    emu = Group.create(name: "People for the Ethical Treatment of Emus", summary: "Emus are being mistreated. We are helping emus.")
-    walrus = Group.create(name: "Walrus Relocation Angels", summary: "We find and relocate beached walruses.")
-    banjo = Group.create(name: "Banjo Revival", summary: "We provide banjos to struggling schoolchildren in Appalachia.")
-    aqua = Group.create(name: "Aquatic Liberation Front", summary: "We take the plastic rings off of fish.")
-    trees = Group.create(name: "Save the Christmas Trees", summary: "Every christmas, millions of trees are murdered in cold sap. This is wrong. It must stop now.")
-    bears = Group.create(name: "Guitars for Bears", summary: "We give guitars to bears. Don't ask questions.")
+    emu = Group.create(name: "People for the Ethical Treatment of Emus", summary: "Emus are being mistreated. We are helping emus.", recent_activity: DateTime.current)
+    walrus = Group.create(name: "Walrus Relocation Angels", summary: "We find and relocate beached walruses.", recent_activity: DateTime.current)
+    banjo = Group.create(name: "Banjo Revival", summary: "We provide banjos to struggling schoolchildren in Appalachia.", recent_activity: DateTime.current)
+    aqua = Group.create(name: "Aquatic Liberation Front", summary: "We take the plastic rings off of fish.", recent_activity: DateTime.current)
+    trees = Group.create(name: "Save the Christmas Trees", summary: "Every christmas, millions of trees are murdered in cold sap. This is wrong. It must stop now.", recent_activity: DateTime.current)
+    bears = Group.create(name: "Guitars for Bears", summary: "We give guitars to bears. Don't ask questions.", recent_activity: DateTime.current)
     
 
 
