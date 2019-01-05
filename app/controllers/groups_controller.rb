@@ -21,6 +21,9 @@ class GroupsController < ApplicationController
     def create
       group = Group.create(group_params)
       group.users << current_user
+      group.groups_user[0].admin = true
+      group.groups_user[0].save
+      binding.pry
       flash[:notice] = "You successfully created a group!"
       redirect_to group_path(group)
     end

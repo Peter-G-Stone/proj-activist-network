@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_04_234103) do
+ActiveRecord::Schema.define(version: 2019_01_03_180421) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -29,22 +29,12 @@ ActiveRecord::Schema.define(version: 2019_01_04_234103) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "groups_admins", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "group_id"
-    t.integer "user_id"
-    t.index ["group_id"], name: "index_groups_admins_on_group_id"
-    t.index ["user_id"], name: "index_groups_admins_on_user_id"
-  end
-
   create_table "groups_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
     t.integer "user_id"
-    t.index ["group_id"], name: "index_groups_users_on_group_id"
-    t.index ["user_id"], name: "index_groups_users_on_user_id"
+    t.boolean "admin"
   end
 
   create_table "posts", force: :cascade do |t|

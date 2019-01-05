@@ -1,7 +1,7 @@
 class Group < ApplicationRecord
 
-    has_and_belongs_to_many :users
-    has_and_belongs_to_many :admins, class_name: "User"
+    has_many :groups_user
+    has_many :users, through: :groups_user
     has_many :posts
 
 end

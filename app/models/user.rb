@@ -2,8 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  has_and_belongs_to_many :groups
-  has_and_belongs_to_many :admin_groups, class_name: "Group"
+  has_many :groups_user
+  has_many :groups, through: :groups_user
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
