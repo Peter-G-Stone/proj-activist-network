@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create(content: comment_params[:content], user: current_user, post: Post.find(comment_params[:post_id]))
-    redirect_to group_path(@comment.post.group)
+    redirect_to group_post_path(@comment.post.group, @comment.post)
   end
 
   def edit
@@ -26,9 +26,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    post = @comment.post
     @comment.destroy
     flash[:notice] = "Comment deleted."
-    redirect_to group_path(@comment.post.group)
+    redirect_to group_post_path(post.group, post)
   end
 
   private

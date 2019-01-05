@@ -25,11 +25,15 @@ class User < ApplicationRecord
     end
   end
 
-
+# the below returns the item in the join table that connects a user to a group to which they belong, 
+# allowing editing of the admin var
   def group_link(group)
     self.groups_user.find{|g_u| g_u.group_id == group.id} 
   end
 
+
+# the below returns the value of the admin var on a group connection, but can't be used to edit the 
+# admin value
   def admin?(group)
     !!self.groups_user.find{|g_u| g_u.group_id == group.id}.admin
   end

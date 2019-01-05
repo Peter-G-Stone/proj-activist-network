@@ -6,6 +6,9 @@
     <%= link_to "Leave Group", "/groups/#{@group.id}/leave_group" %>
 <% else  %>
     <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
+<% end %> <br>
+<% if @group_users.include?(current_user) && current_user.admin?(@group) %>
+    <%= button_to "Delete Group", group_path, method: :delete %>
 <% end %>
 <br><br><br>
 <h1> Posts: </h2>
@@ -17,7 +20,7 @@
 <ul>
 <% @group_posts.reverse_each do |post| %>
 
-    <h3><%= link_to post.content, group_post_path(post.id) %></h3>
+    <h3><%= link_to post.content, group_post_path(@group.id, post.id) %></h3>
     <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= link_to post.user.name, profile_path(post.user) %></p> 
     <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
     <% if post.user == current_user %>

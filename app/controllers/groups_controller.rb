@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-    before_action :set_group, only: [:show, :edit, :update, :join_group, :leave_group]
+    before_action :set_group, only: [:show, :edit, :update, :join_group, :leave_group, :destroy]
     before_action :authenticate_user!
 
 
@@ -46,6 +46,11 @@ class GroupsController < ApplicationController
       @group.users -= [current_user]
       flash[:notice] = "You successfully left this group."
       redirect_to group_path(@group)
+    end
+
+    def destroy
+      @group.destroy
+      redirect_to groups_path
     end
 
 
