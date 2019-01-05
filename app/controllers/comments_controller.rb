@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create(content: comment_params[:content], user: current_user, post: Post.find(comment_params[:post_id]))
+    @comment.post.group.update(recent_activity: Time.now)
     redirect_to group_post_path(@comment.post.group, @comment.post)
   end
 
@@ -21,6 +22,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     @comment.update(content: comment_params[:content])
+    @comment.post.group.update(recent_activity: Time.now)
     redirect_to group_post_path(@comment.post.group, @comment.post)
   end
 
@@ -28,6 +30,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     post = @comment.post
     @comment.destroy
+    @comment.post.group.update(recent_activity: Time.now)
     flash[:notice] = "Comment deleted."
     redirect_to group_post_path(post.group, post)
   end

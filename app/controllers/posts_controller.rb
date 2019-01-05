@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(content: post_params[:content], group: Group.find(post_params[:group_id]), user: current_user)
         if @post.save
+            @post.group.update(recent_activity: Time.now)
             redirect_to group_path(@post.group)
         else
             messages = ""
@@ -28,6 +29,7 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
 
         if @post.update(content: post_params[:content])
+            @post.group.update(recent_activity: Time.now)
             redirect_to group_path(@post.group)
         else
             messages = ""
@@ -43,6 +45,7 @@ class PostsController < ApplicationController
     def destroy
         @post = Post.find(params[:id])
         @post.comments.each {|c| c.destroy}
+        @post.group.update(recent_activity: Time.now)
         @post.destroy
         flash[:notice] = "Post deleted."
         redirect_to group_path(@post.group)

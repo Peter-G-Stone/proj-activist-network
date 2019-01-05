@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
       group.users << current_user
       group.groups_user[0].admin = true
       group.groups_user[0].save
-      binding.pry
+      group.update(recent_activity: Time.now)
       flash[:notice] = "You successfully created a group!"
       redirect_to group_path(group)
     end
@@ -33,11 +33,13 @@ class GroupsController < ApplicationController
   
     def update
       @group.update(group_params)
+      @group.update(recent_activity: Time.now)
       redirect_to groups_path
     end
 
     def join_group
       @group.users << current_user
+      @group.update(recent_activity: Time.now)
       flash[:notice] = "You successfully joined this group."
       redirect_to group_path(@group)
     end
