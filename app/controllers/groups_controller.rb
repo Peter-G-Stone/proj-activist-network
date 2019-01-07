@@ -37,6 +37,14 @@ class GroupsController < ApplicationController
       redirect_to groups_path
     end
 
+    def destroy
+      @group.destroy
+      redirect_to groups_path
+    end
+
+#-----------------------------------
+
+
     def join_group
       @group.users << current_user
       @group.update(recent_activity: Time.now)
@@ -50,10 +58,12 @@ class GroupsController < ApplicationController
       redirect_to group_path(@group)
     end
 
-    def destroy
-      @group.destroy
-      redirect_to groups_path
+    def recently_active
+      @groups = Group.active_in_last_hour
+      flash[:notice] = "These groups were active within the last hour!"
+      render 'index'
     end
+
 
 
     private

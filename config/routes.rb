@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   #
   get '/groups/:id/join_group', to: 'groups#join_group'
   get '/groups/:id/leave_group', to: 'groups#leave_group'
+  get '/groups/recently_active', to: 'groups#recently_active'
+
+
+  
 
   #omniauth routes:
   get '/auth/facebook/callback' => 'sessions#create'
@@ -24,7 +28,6 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
   end
 
-  
   
   
   
