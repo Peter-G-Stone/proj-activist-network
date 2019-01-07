@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
     before_action :authenticate_user!
-
+    before_action :set_post, only: [:show, :edit, :destroy]
+    before_action :user_is_authorized?, only: [:edit, :destroy]
 
     def new
         @post = Post.new
@@ -22,7 +23,6 @@ class PostsController < ApplicationController
     end
 
     def edit
-        @post = Post.find(params[:id])
     end
 
     def update
@@ -39,11 +39,9 @@ class PostsController < ApplicationController
     end 
 
     def show
-        @post = Post.find(params[:id])
     end
 
     def destroy
-        @post = Post.find(params[:id])
         @post.comments.each {|c| c.destroy}
         @post.group.update(recent_activity: Time.now)
         @post.destroy
@@ -55,5 +53,14 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(:content, :group_id, :id)
+    end
+
+    def set_post
+        @post = Post.find(params[:id])
+    end
+
+    def user_is_authorized?
+        flash[:notice] = "You aren't allowed to do that!"
+        redirect_to group_post_path(@post.group, @post) unless current_user == @post.user
     end
 end

@@ -90,6 +90,7 @@ class GroupsController < ApplicationController
       end
 
       def user_is_authorized?
+        flash[:notice] = "You aren't allowed to do that!"
         redirect_to group_path(@group) unless current_user.admin?(@group)
       end
   

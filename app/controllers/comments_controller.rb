@@ -48,6 +48,7 @@ class CommentsController < ApplicationController
   end
 
   def user_is_authorized?
+    flash[:notice] = "You aren't allowed to do that!"    
     redirect_to group_post_path(@comment.post.group, @comment.post) unless current_user == @comment.user
   end
 end
