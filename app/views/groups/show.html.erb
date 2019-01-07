@@ -2,15 +2,23 @@
 
 <p> <%= @group.summary %> </p>
 
+<br><br><br><br>
+
 <% if @group_users.include?(current_user) %>
     <%= link_to "Leave Group", "/groups/#{@group.id}/leave_group" %>
 <% else  %>
     <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
 <% end %> <br>
 <% if @group_users.include?(current_user) && current_user.admin?(@group) %>
+    <%= link_to "Edit Group", edit_group_path %>
     <%= button_to "Delete Group", group_path, method: :delete %>
 <% end %>
+
+
 <br><br><br>
+
+
+
 <h1> Posts: </h1>
 <p>(Click a post's link to see its comments.)</p><br>
 
