@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    redirect_to group_post_path(@comment.post.group, @comment.post) unless user_is_authorized(@comment)
+
     @comment = Comment.find(params[:id])
   end
 
@@ -39,5 +41,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :post_id, :id)
+  end
+
+  def user_is_authorized?(comment)
+    current_user == comment.user
   end
 end
