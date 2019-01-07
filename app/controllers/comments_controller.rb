@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   
-  before_action :authenticate_user!
+  before_action :authenticate_user! 
+  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :user_is_authorized?, only: [:edit, :update, :destroy]
 
   def new
     @comment = Comment.new
@@ -15,8 +17,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    redirect_to group_post_path(@comment.post.group, @comment.post) unless user_is_authorized(@comment)
-
     @comment = Comment.find(params[:id])
   end
 
@@ -43,7 +43,11 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content, :post_id, :id)
   end
 
-  def user_is_authorized?(comment)
-    current_user == comment.user
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def user_is_authorized?
+    redirect_to group_post_path(@comment.post.group, @comment.post) unless current_user == @comment.user
   end
 end
