@@ -35,6 +35,7 @@ class User < ApplicationRecord
 # the below returns the value of the admin var on a group connection, but can't be used to edit the 
 # admin value
   def admin?(group)
+    return false unless group.users.include?(self)
     !!self.groups_user.find{|g_u| g_u.group_id == group.id}.admin
   end
 end

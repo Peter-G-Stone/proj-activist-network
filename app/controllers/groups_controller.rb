@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
 
+
     before_action :set_group, only: [:show, :edit, :update, :join_group, :leave_group, :destroy]
+    before_action :user_is_authorized?, only: [:edit, :update, :destroy]
     before_action :authenticate_user!
 
 
@@ -85,6 +87,10 @@ class GroupsController < ApplicationController
   
       def set_group
         @group = Group.find(params[:id])
+      end
+
+      def user_is_authorized?
+        redirect_to group_path(@group) unless current_user.admin?(@group)
       end
   
   end
