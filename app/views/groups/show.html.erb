@@ -11,7 +11,8 @@
     <%= button_to "Delete Group", group_path, method: :delete %>
 <% end %>
 <br><br><br>
-<h1> Posts: </h2>
+<h1> Posts: </h1>
+<p>(Click a post's link to see its comments.)</p><br>
 
 <% if @group_users.include?(current_user) %>
     <h5><%= link_to "New Post", new_group_post_path(@group.id) %> </h5>
