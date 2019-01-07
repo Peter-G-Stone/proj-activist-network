@@ -60,7 +60,7 @@ class GroupsController < ApplicationController
 
     def recently_active
       @groups = Group.active_in_last_hour
-      flash[:notice] = "These groups were active within the last hour!"
+      flash.now[:notice] = "These groups were active within the last hour!"
       render 'index'
     end
 
