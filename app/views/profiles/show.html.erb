@@ -28,7 +28,9 @@
 
         <li><%= link_to post.content, group_post_path(post.group, post) %> <br>
             In this group: <br>
-            <%= link_to post.group.name, group_path(post.group) %> <br> <br>
+            <%= link_to post.group.name, group_path(post.group) %> <br>
+            <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
+            <br><br>
 
         </li>
 
@@ -49,6 +51,8 @@
             "<%= comment.content %>" <br>
             On this post: <br>
             <%= link_to comment.post.content, group_post_path(comment.post.group, comment.post) %> 
+            <br>
+            <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= comment.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>            
             <br><br>
         </li>
 
