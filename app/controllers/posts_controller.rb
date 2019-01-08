@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
     before_action :authenticate_user!
-    before_action :set_post, only: [:show, :edit, :destroy]
-    before_action :user_is_authorized?, only: [:edit, :destroy]
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :user_is_authorized?, only: [:edit, :update, :destroy]
 
     def new
         @post = Post.new
@@ -26,8 +26,6 @@ class PostsController < ApplicationController
     end
 
     def update
-        @post = Post.find(params[:id])
-
         if @post.update(content: post_params[:content])
             @post.group.update(recent_activity: Time.now)
             redirect_to group_path(@post.group)
