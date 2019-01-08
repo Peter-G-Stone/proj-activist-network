@@ -80,6 +80,11 @@ class GroupsController < ApplicationController
 
     def search
       @groups = Group.where("name LIKE ?", "%#{params[:group_name_q]}%")
+      if @groups.empty?
+        flash.now[:error] = "No results found for '#{params[:group_name_q]}'!" 
+      else
+        flash.now[:notice] = "Here are your search results for '#{params[:group_name_q]}'."
+      end
       render 'index'
     end
 
