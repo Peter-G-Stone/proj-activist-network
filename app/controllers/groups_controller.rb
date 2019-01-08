@@ -38,7 +38,6 @@ class GroupsController < ApplicationController
   
     def update
       if @group.update(group_params)
-        @group.update(recent_activity: Time.now)
         redirect_to group_path(@group.id)
       else
         messages = ""
@@ -57,7 +56,6 @@ class GroupsController < ApplicationController
 
     def join_group
       @group.users << current_user
-      @group.update(recent_activity: Time.now)
       flash[:notice] = "You successfully joined this group."
       redirect_to group_path(@group)
     end
