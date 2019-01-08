@@ -11,9 +11,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create(content: comment_params[:content], user: current_user, post: Post.find(comment_params[:post_id]))
-    @comment.post.group.update(recent_activity: Time.now)
-    redirect_to group_post_path(@comment.post.group, @comment.post)
+    @comment = Comment.new(content: comment_params[:content], user: current_user, post: Post.find(comment_params[:post_id]))
+    if @comment.save
+      @comment.post.group.update(recent_activity: Time.now)
+      redirect_to group_post_path(@comment.post.group, @comment.post)
+    else
+      flash[:error] = @comment.errors.full_messages[0]
+      redirect_to new_post_comment_path(@comment.post)
+    end
   end
 
   def edit
@@ -23,9 +28,13 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
 
-    @comment.update(content: comment_params[:content])
-    @comment.post.group.update(recent_activity: Time.now)
-    redirect_to group_post_path(@comment.post.group, @comment.post)
+    if @comment.update(content: comment_params[:content])
+      @comment.post.group.update(recent_activity: Time.now)
+      redirect_to group_post_path(@comment.post.group, @comment.post)
+    else
+      flash[:error] = @comment.errors.full_messages[0]
+      redirect_to edit_post_comment_path(@comment.post, @comment)
+    end
   end
 
   def destroy
@@ -48,7 +57,9 @@ class CommentsController < ApplicationController
   end
 
   def user_is_authorized?
-    flash[:notice] = "You aren't allowed to do that!"    
-    redirect_to group_post_path(@comment.post.group, @comment.post) unless current_user == @comment.user
+    unless current_user == @comment.user
+      flash[:notice] = "You aren't allowed to do that!"
+      redirect_to group_post_path(@comment.post.group, @comment.post) 
+    end
   end
 end
