@@ -1,0 +1,16 @@
+<h1>Activist Network: User Search Results</h1>
+
+<h3> 
+
+    <%= link_to "Create a Group", new_group_path %>
+
+</h3>
+
+<ul>
+
+    <% @users.each do |user| %>
+        <li><%= link_to user.name, profile_path(user) %></li>
+        <br>
+    <% end %>
+
+</ul>

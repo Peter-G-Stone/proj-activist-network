@@ -15,14 +15,16 @@ class ProfilesController < ApplicationController
       @user_comments = @user.comments 
     end
    
-    # def edit  
-    # end
-  
-    # def update
-    #   @user.update(user_params)
-    #   redirect_to user_path
-    # end
-
+   
+    def search
+      @users = User.where("name LIKE ?", "%#{params[:user_name_q]}%")
+      if @users.empty?
+        flash.now[:error] = "No results found for '#{params[:user_name_q]}'!" 
+      else
+        flash.now[:notice] = "Here are your search results for '#{params[:user_name_q]}'."
+      end
+      render 'index'
+    end
 
 
     private

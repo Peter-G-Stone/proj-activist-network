@@ -23,6 +23,11 @@
         <%= text_field_tag(:group_name_q) %>
         <%= submit_tag("Search") %>
       <% end %>
+      <%= form_tag("/search_users", method: "get") do %>
+        <%= label_tag(:group_name_q, "Search Users by Username:") %>
+        <%= text_field_tag(:user_name_q) %>
+        <%= submit_tag("Search") %>
+      <% end %>
       <br><br>
       Activist Network - Logged in as: <%= current_user.name %> <br> <br>
     <% end %>
