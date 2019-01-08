@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/groups/:id/join_group', to: 'groups#join_group'
   get '/groups/:id/leave_group', to: 'groups#leave_group'
   get '/groups/recently_active', to: 'groups#recently_active', as: "recently_active"
-
+  get '/search_groups', to: 'groups#search', as: "search_groups"
 
 
 

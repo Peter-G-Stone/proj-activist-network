@@ -78,6 +78,11 @@ class GroupsController < ApplicationController
       render 'index'
     end
 
+    def search
+      @groups = Group.where("name LIKE ?", "%#{params[:group_name_q]}%")
+      render 'index'
+    end
+
 
 
     private
