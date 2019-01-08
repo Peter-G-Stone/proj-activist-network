@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
     def show
       @user_groups = @user.groups
       @user_posts = @user.posts 
-      @user_comments = @user.comments 
+      @user_comments = @user.comments
     end
    
    

@@ -21,20 +21,16 @@ class GroupsController < ApplicationController
     end
   
     def create
-      group = Group.new(group_params)
-      group.users << current_user
-      if group.save
-        group.groups_user[0].admin = true
-        group.groups_user[0].save
-        group.update(recent_activity: Time.now)
+      @group = Group.new(group_params)
+      @group.users << current_user
+      if @group.save
         flash[:notice] = "You successfully created a group!"
-        redirect_to group_path(group)
+        redirect_to group_path(@group)
       else
         messages = ""
-        flash[:notice] = group.errors.full_messages.map {|msg| messages + msg + ". "}[0]
-        redirect_to new_group_path
-      end
-      
+        flash.now[:notice] = @group.errors.full_messages.map {|msg| messages + msg + ". "}[0]
+        render 'new'
+      end     
     end
   
     def edit  
