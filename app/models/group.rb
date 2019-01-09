@@ -7,17 +7,20 @@ class Group < ApplicationRecord
     validates :name, presence: :true
     validates :summary, presence: :true
 
-    before_save :make_admin_and_update_recent_activity
+    before_save :update_recent_activity
+    after_create :make_admin
 
 
     scope :active_in_last_hour, -> { where('recent_activity > ?', 1.hour.ago)}
     scope :active_in_last_day, -> { where('recent_activity > ?', 1.day.ago)}
 
     
-    def make_admin_and_update_recent_activity
-        self.groups_user[0].admin = true
-        self.groups_user[0].save
+    def update_recent_activity
         self.recent_activity = Time.now
     end
-
+    
+    def make_admin
+        self.groups_user[0].admin = true
+        self.groups_user[0].save
+    end
 end
