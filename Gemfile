@@ -12,7 +12,7 @@ gem 'dotenv-rails'
 
 gem 'thin'
   # this lets us use https
-
+  # use the command:    thin start --ssl
 
   
 

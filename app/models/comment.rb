@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
 
     #the below allows us to keep track of the group's recent activity to which the post belongs
   def update_recent_activity
-    self.group.update(recent_activity:  Time.now)
+    self.post.group.update(recent_activity:  Time.now)
   end
 
 end
