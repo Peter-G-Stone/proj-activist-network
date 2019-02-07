@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
     before_save :update_recent_activity
 
 
-    #the below allows us to keep track of the group's recent activity to which the post belongs
+    #the below allows us to keep track of the recent activity of the group to which the post belongs
   def update_recent_activity
     self.post.group.update(recent_activity:  Time.now)
   end
