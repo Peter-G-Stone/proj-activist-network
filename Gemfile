@@ -6,6 +6,8 @@ ruby '2.3.3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'jquery-rails'
+
 
 gem 'dotenv-rails'
   # the above is a gem that lets the devise initializer look up those ENV variables from the .env file!
