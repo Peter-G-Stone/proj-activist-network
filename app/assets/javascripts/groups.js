@@ -6,6 +6,13 @@ $(() => {
         $("#group-show-group-name").html('<h1>' + group.name + ' from js!</h1>')
         $("#group-show-group-summary").html(group.summary + ' from js!')
         $("#group-show-group-summary").html(group.summary + ' from js!')
+
+        const posts = group.posts
+        posts.forEach( post => {
+            console.log(post)
+
+        })
+        
     })
 })
 
