@@ -28,7 +28,7 @@
 
 <ul>
 <% @group_posts.reverse_each do |post| %>
-
+    
     <h3><%= link_to post.content, group_post_path(@group.id, post.id) %></h3>
     <p>&nbsp&nbsp&nbsp&nbsp - Written by: <%= link_to post.user.name, profile_path(post.user) %></p> 
     <p>&nbsp&nbsp&nbsp&nbsp - Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC </p>
