@@ -10,47 +10,26 @@ $(() => {
         const posts = group.posts
         posts.forEach( post => {
             console.log(post)
-
-        })
-        
+            
+            // got user and comment info in json! yay!
+            const postCard = '<div class="card blue-grey darken-4">' +
+                '<div class="card-content white-text">' +
+                    '<span class="card-title">this is content<%= link_to post.user.name, profile_path(post.user) %></span>' +
+                    '<p><%= link_to post.content, group_post_path(@group.id, post.id) %> <br>' +
+                    'Created: <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC</p>' +
+                '</div>' +
+                '<div class="card-action">' +        
+                    '<% if post.user == current_user %>' +
+                        '<p><%= link_to "Edit Post", edit_group_post_path(@group.id, post.id) %>' +
+                        '<%= button_to "Delete Post", group_post_path(@group.id, post.id), method: :delete %> </p>' +
+                    '<% end %>' +
+                '</div>' +
+            '</div>'
+            
+            $('#group-show-post-list').append(postCard)
+        })        
     })
 })
-
-
-// $(() => {
-//     $(".groupId").on("click", function() {
-//         let groupId = $(this).data("id")
-//         $.get("/groups/" + groupId + ".json", function(group) {
-//             console.log(group.name)
-//         })
-//     })
-// })
-
-
-
-
-
-
-// $(function() {
-//     $(".js-more").on("click", function() {
-//       var id = $(this).data("id");
-//       $.get("/products/" + id + ".json", function(data) {
-//         var product = data;
-//         var inventoryText = "<strong>Available</strong>";
-//         if(product["inventory"] === 0){
-//           inventoryText = "<strong>Sold Out</strong>";
-//         }
-//         var descriptionText = "<p>" + product["description"] + "</p><p>" + inventoryText + "</p>";
-//         $("#product-" + id).html(descriptionText);
-//         var orders = product["orders"];
-//         var orderList = "";
-//         orders.forEach(function(order) {
-//           orderList += '<li class="js-order" data-id="' + order["id"] + '">' + order["id"] + ' - ' + order["created_at"] + '</li>';
-//         });
-//         $("#product-" + id + "-orders").html(orderList);
-//       });
-//     });
-//   });
 
 
 

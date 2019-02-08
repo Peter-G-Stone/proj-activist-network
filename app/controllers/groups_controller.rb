@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
       @group_posts = @group.posts
       respond_to do |format|
         format.html {render :show }
-        format.json {render json: @group.to_json(include: [:posts])}
+        format.json {render json: @group.to_json(include: { posts: {include: [:user, :comments]}})}
       end
     end
   
