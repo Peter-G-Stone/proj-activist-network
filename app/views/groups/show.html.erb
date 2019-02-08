@@ -1,6 +1,11 @@
-<div class='col s12 m6'><h1> <%= @group.name %> </h1></div>
+<div class='col s12 m6'><h1> 
+    <%= @group.name %> 
+</h1></div>
 
-<div class='row'> <div class='col s12 m6'><p> <%= @group.summary %> </p></div></div>
+
+<div class='row'> <div class='col s12 m6'><p> 
+    <%= @group.summary %> 
+</p></div></div>
 
 
 <% if @group_users.include?(current_user) %>
@@ -19,8 +24,11 @@
 
 
 
-<div class='row'> <div class='col s12 m6'><h1> Posts: </h1></div></div>
-<div class='row'> <div class='col s12 m6'><p>(Click a post's link to see its comments.)</p></div></div>
+<div class='row'> <div class='col s12 m6'>
+    <h1>Posts: </h1>
+    <p>(Click a post's link to see its comments.)</p>
+</div></div>
+
 
 <% if @group_users.include?(current_user) %>
     <div class='row'> <div class='col s12 m6'><h5><%= link_to "New Post", new_group_post_path(@group.id) %> </h5></div></div>
