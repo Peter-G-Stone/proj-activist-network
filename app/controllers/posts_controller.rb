@@ -36,6 +36,11 @@ class PostsController < ApplicationController
     end 
 
     def show
+        # @post has been set
+        respond_to do |format|
+            format.html {render :show }
+            format.json {render json: @post}
+        end
     end
 
     def destroy
