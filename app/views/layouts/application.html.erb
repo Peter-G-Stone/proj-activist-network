@@ -21,12 +21,12 @@
         <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         <br> <br>
         <%= form_tag("/search_groups", method: "get", class: 'input-field') do %>
-          <%= label_tag(:group_name_q, "Search Groups:") %>
+          <%= label_tag(:group_name_q, "Search Groups") %>
           <%= text_field_tag(:group_name_q) %>
           <%= submit_tag("Search") %>
-        <% end %> <br>
+        <% end %> <br><br><br>
         <%= form_tag("/search_users", method: "get", class: 'input-field') do %>
-          <%= label_tag(:group_name_q, "Search Users by Username:") %>
+          <%= label_tag(:group_name_q, "Search Users by Username") %>
           <%= text_field_tag(:user_name_q) %>
           <%= submit_tag("Search") %>        
         <% end %>
