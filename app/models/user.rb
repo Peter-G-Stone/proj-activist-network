@@ -8,12 +8,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-
-
-
-
-
-
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -33,8 +27,6 @@ class User < ApplicationRecord
   end
 
 
-
-
 # the below returns the item in the join table that connects a user to a group to which they belong, 
 # allowing editing of the admin variable
   def group_link(group)
@@ -48,7 +40,5 @@ class User < ApplicationRecord
     return false unless group.users.include?(self)
     !!self.groups_user.find{|g_u| g_u.group_id == group.id}.admin
   end
-
-
   
 end
