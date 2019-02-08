@@ -12,8 +12,13 @@ class GroupsController < ApplicationController
     end
   
     def show
+      # @group is set
       @group_users = @group.users
       @group_posts = @group.posts
+      respond_to do |format|
+        format.html {render :show }
+        format.json {render json: @group.to_json(include: [:posts])}
+      end
     end
   
     def new
