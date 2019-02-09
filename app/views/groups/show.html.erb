@@ -33,7 +33,17 @@
     <p>(Click the post's text to see its comments.)</p>
 
     <% if @group_users.include?(current_user) %>
-        <div class='row'> <div class='col s12 m12'><h5 id="new-post-link"><%= link_to "New Post", new_group_post_path(@group.id) %> </h5></div></div>
+        <div class='row'> <div class='col s12 m12'>
+            <h5 id="new-post-link"><%= link_to "New Post", new_group_post_path(@group.id) %></h5>
+            
+        </div></div>
+
+    <% end %>
+    <%= form_for [@group, Post.new] do |f| %>
+                <%= f.label :content %>
+                <%= f.text_field :content, :size => 80 %> <br>
+                <%= f.hidden_field :group_id, value: @group.id %>
+                <%= f.submit %>
     <% end %>
 
     <ul id='group-show-post-list'>

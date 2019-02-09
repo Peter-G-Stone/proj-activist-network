@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     end
 
     def create
+        binding.pry
         @post = Post.new(content: post_params[:content], group: Group.find(post_params[:group_id]), user: current_user)
         if @post.save
             # @post.group.update(recent_activity: Time.now)

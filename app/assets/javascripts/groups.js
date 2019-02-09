@@ -1,5 +1,7 @@
 // will get the group data, allow display of posts and comments 
 
+
+
 function appendPost(post, groupId, currentUserId){
     const editUrl = "/posts/" + post.id + '/edit'
     let postCard = '<div class="card blue-grey darken-4">' +
@@ -37,17 +39,23 @@ function appendPost(post, groupId, currentUserId){
 function renderNewPostForm(groupId) {
     $('#new-post-link').on('click', function (event){
         event.preventDefault()
+        $('#new-post-form').show()
         console.log('you clikced me')
-        console.log(this)
         $('#new-post-link').text('')
-        const postingUrl = '/groups/' + groupId + '/posts/new'
-        const newPostForm = '<form><input type="text" name="content" placeholder="New Post" method="post" action="' +
-            postingUrl +
-            '"><input type="submit"></form>'
-        $(newPostForm).insertAfter(this)
+        // const postingUrl = '/groups/' + groupId + '/posts'
+        // const newPostForm = '<form id="new-post-form" method="post" action="' +
+        //     postingUrl +
+        //     '"><input type="text" name="content" placeholder="New Post"' +
+        //     '><input type="submit"></form>'
+        // $(newPostForm).insertAfter(this)
     })
 }
 
+
+
+$(document).ready( () => {
+    $('#new-post-form').hide()
+})
 
 
 $(() => {
@@ -61,7 +69,7 @@ $(() => {
         $("#group-show-group-summary").html(group.summary)
 
         const posts = group.posts
-        posts.forEach( post => {
+        posts.forEach( post => { //can I make this a reverse each?
             appendPost(post, groupId, currentUserId)                    
         })        
     })
@@ -71,17 +79,4 @@ $(() => {
     // the following renders the form when new post is clicked:
     renderNewPostForm(groupId)
 
-    
 })
-
-
-
-
-
-
-
-// this is popped in here cause I was curious about it and want to look at it later:
-
-// $(document).ready( () => {
-
-// })
