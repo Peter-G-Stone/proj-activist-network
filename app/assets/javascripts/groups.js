@@ -39,9 +39,9 @@ function appendPost(post, groupId, currentUserId){
 function renderNewPostForm(groupId) {
     $('#new-post-link').on('click', function (event){
         event.preventDefault()
-        $('#new-post-form').show()
+        $('form').show()
         console.log('you clikced me')
-        $('#new-post-link').text('')
+        $('#new-post-link').hide()
         // const postingUrl = '/groups/' + groupId + '/posts'
         // const newPostForm = '<form id="new-post-form" method="post" action="' +
         //     postingUrl +
@@ -54,7 +54,7 @@ function renderNewPostForm(groupId) {
 
 
 $(document).ready( () => {
-    $('#new-post-form').hide()
+    $('#new_post').hide()
 })
 
 
