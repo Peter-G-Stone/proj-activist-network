@@ -2,13 +2,13 @@
 
 $(() => {
     let groupId = $('.groupId').data("id")
+    let currentUserId = $('.currentUserId').data("id")
     $.get("/groups/" + groupId + ".json", function(group) {
         $("#group-show-group-name").html('<h1>' + group.name + '</h1>')
         $("#group-show-group-summary").html(group.summary)
 
         const posts = group.posts
         posts.forEach( post => {
-            console.log(post)
             
             // previously the post content linked to the post show page
             // <%= link_to post.content, group_post_path(@group.id, post.id) %> 
@@ -16,7 +16,8 @@ $(() => {
 
             // previously did this strftime
             // <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC
-            const postCard = '<div class="card blue-grey darken-4">' +
+            const editUrl = "/posts/" + post.id + '/edit'
+            let postCard = '<div class="card blue-grey darken-4">' +
                 '<div class="card-content white-text">' +
                 '<span class="card-title"><a href="//localhost:3000/profiles/' +
                 post.user.id +
@@ -30,14 +31,17 @@ $(() => {
                 '</a><br>Created: ' + 
                 post.created_at +
                 '</p></div>' +
-                '<div class="card-action">' +        
-                    '<% if post.user == current_user %>' +
-                        '<p><%= link_to "Edit Post", edit_group_post_path(@group.id, post.id) %>' +
-                        '<%= button_to "Delete Post", group_post_path(@group.id, post.id), method: :delete %> </p>' +
-                    '<% end %>' +
-                '</div>' +
-            '</div>'
-            
+                '<div class="card-action">'
+            if (currentUserId === post.user.id){
+                const editAndDelete = '<p><a href="' +
+                    editUrl +
+                    '">Edit Post</a></p>' +
+                    '<button>Delete</button>'
+                    // make this button actually do something pete!
+                    postCard += editAndDelete
+            }
+            postCard += '</div></div>'
+            console.log(postCard)
             $('#group-show-post-list').append(postCard)
         })        
     })
