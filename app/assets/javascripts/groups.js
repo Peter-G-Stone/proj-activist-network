@@ -42,12 +42,6 @@ function renderNewPostForm(groupId) {
         $('form').show()
         console.log('you clikced me')
         $('#new-post-link').hide()
-        // const postingUrl = '/groups/' + groupId + '/posts'
-        // const newPostForm = '<form id="new-post-form" method="post" action="' +
-        //     postingUrl +
-        //     '"><input type="text" name="content" placeholder="New Post"' +
-        //     '><input type="submit"></form>'
-        // $(newPostForm).insertAfter(this)
     })
 }
 
