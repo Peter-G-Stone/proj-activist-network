@@ -62,7 +62,9 @@ class PostsController < ApplicationController
     end
 
     def user_is_authorized?
-        flash[:notice] = "You aren't allowed to do that!"
-        redirect_to group_post_path(@post.group, @post) unless current_user == @post.user
+        if current_user != @post.user
+            flash[:notice] = "You aren't allowed to do that!"
+            redirect_to group_post_path(@post.group, @post)
+        end
     end
 end

@@ -24,7 +24,9 @@ $(() => {
                 '" >' +
                 post.user.name +
                 '</a></span>' +
-                '<p><br><a href="/posts/' +
+                '<p><br><a href="//localhost:3000/groups/' +
+                groupId +
+                '/posts/' +
                 post.id +
                 '">' +
                 post.content +
@@ -33,7 +35,8 @@ $(() => {
                 '</p></div>' +
                 '<div class="card-action">'
             if (currentUserId === post.user.id){
-                const editAndDelete = '<p><a href="' +
+                const editAndDelete = '<p><a href="//localhost:3000/groups/'+
+                    groupId +
                     editUrl +
                     '">Edit Post</a></p>' +
                     '<button>Delete</button>'
@@ -41,7 +44,6 @@ $(() => {
                     postCard += editAndDelete
             }
             postCard += '</div></div>'
-            console.log(postCard)
             $('#group-show-post-list').append(postCard)
         })        
     })
