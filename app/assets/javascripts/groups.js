@@ -1,6 +1,10 @@
 // will get the group data, allow display of posts and comments 
 
 $(() => {
+   
+   
+    // the following is to render the posts on the page!
+
     let groupId = $('.groupId').data("id")
     let currentUserId = $('.currentUserId').data("id")
     $.get("/groups/" + groupId + ".json", function(group) {
@@ -44,9 +48,12 @@ $(() => {
                     postCard += editAndDelete
             }
             postCard += '</div></div>'
-            $('#group-show-post-list').append(postCard)
+            $('#group-show-post-list').append(postCard)        
         })        
     })
+
+    // the following handles the form for new post:
+    
 })
 
 
