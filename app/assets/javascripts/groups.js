@@ -63,7 +63,7 @@ function prependPost(post, groupId, currentUserId){
     $('#group-show-post-list').prepend(postCard)
 }
 
-function renderNewPostForm(groupId) {
+function newPostListener() {
     $('#new-post-link').on('click', function (event){
         event.preventDefault()
         $('form').show()
@@ -84,25 +84,25 @@ $(document).on('turbolinks:load', function () { //had to change to turbolinks:lo
     if ($('.groupShowPage').data("id") === true){ 
         // if this page is the group Show page, create post list and handle new post submissions:
         
-        $('#new_post').hide() // hide the new post form (until it is summoned with 'new post' link)
         
-
+        
         // the following is to render the group and posts data on the page!
-
+        
         const groupId = $('.groupId').data("id") // this is id of the current group page being shown
         const currentUserId = $('.currentUserId').data("id")  // id of the current logged on user        
-        $.get("/groups/" + groupId + ".json", function(group) {
+        $.get("/groups/" + groupId + ".json", function(group) { // get the group data
             $("#group-show-group-name").html('<h1>' + group.name + '</h1>')
             $("#group-show-group-summary").html(group.summary)
-    
+            
             const posts = group.posts
             posts.forEach( post => { 
                 prependPost(post, groupId, currentUserId)                    
             })        
         })
-    
-        // the following renders the form when new post is clicked:
-        renderNewPostForm(groupId)
+        
+        
+        $('#new_post').hide() // hide the new post form (until it is summoned with 'new post' link)
+        newPostListener()
     
         // this handles new post submission from that previously mentioned new_post form
         $('#new_post').submit(function (event) {
