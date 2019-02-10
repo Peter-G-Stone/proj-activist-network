@@ -40,12 +40,18 @@ class Post {
                     this.groupId +
                     editUrl +
                     '">Edit Post</a></p>' +
-                    '<button>Delete</button>'
+                    '<button class="postDeleteButton" id="deletePost' +
+                    this.id +
+                    '">Delete</button>'
                     // make this button actually do something pete!
                 postCardHtml += editAndDelete
             }
         postCardHtml += '</div></div>'
         $('#group-show-post-list').prepend(postCardHtml)
+    }
+
+    deletePost(){
+        // eventually this should be a method to remove the posts' html from the page?
     }
 }
 
@@ -59,12 +65,31 @@ function newPostListener() {
     })
 }
 
+function deletePostListener() { // add the listeners to the post delete buttons
+
+    const deleteButtons = document.getElementsByClassName('postDeleteButton')
+    // $('.postDeleteButton') is not selecting them - WHYYYYYYY
+
+    console.log(deleteButtons) // this is logging an HTML collection which won't respond to .length or array notation for some reason
+     
+    // for (i = 0; i < deleteButtons.length; i++) {
+        
+    //     console.log('hey')
+    //     console.log(deleteButtons[i])
+    // }
+    
+    // deleteButtons.forEach(button => {
+    //     button.addEventListener('click', (event) => {
+    //         event.preventDefault()
+    //         console.log('you clicked me!')
+    //     })
+    // })
+}
+
 function newPostSubmitter(groupId, currentUserId) {
     $('#new_post').submit(function (event) {
         event.preventDefault()
         const newPost = $('#new_post').serialize()
-        // const content = $('#post_content').val()
-        // console.log(content)
         let posting = $.post('/groups/' + groupId + '/posts', newPost)
         
         posting.done( function(post){
@@ -108,5 +133,7 @@ $(document).on('turbolinks:load', function () { //had to change to turbolinks:lo
         newPostListener()
 
         newPostSubmitter(groupId, currentUserId) //  handles new post submission
+
+        deletePostListener() // adds listeners to delete buttons on current user's posts
     }   
 })

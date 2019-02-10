@@ -22,7 +22,7 @@
         
         <%= form_tag("/search_groups", method: "get", class: 'col s6') do %>
           <div class='row'>
-            <div class='input-field col s12'>
+            <div class='input-field col m12'>
               <%= label_tag(:group_name_q, "Search Groups") %>
               <%= text_field_tag(:group_name_q) %>
               <%= submit_tag("Search") %>
@@ -32,7 +32,7 @@
         
         <%= form_tag("/search_users", method: "get", class: 'col s6') do %>
           <div class='row'>
-            <div class='input-field col s12'>
+            <div class='input-field col m12'>
               <%= label_tag(:group_name_q, "Search Users by Username") %>
               <%= text_field_tag(:user_name_q) %>
               <%= submit_tag("Search") %>        
