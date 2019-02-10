@@ -1,8 +1,15 @@
+// class Post {
+//     constructor(content)
+// }
+
+
 // will get the group data, allow display of posts and comments 
 
 
 
 function prependPost(post, groupId, currentUserId){
+    
+    // console.log(post)
     const editUrl = "/posts/" + post.id + '/edit'
     let postCard = '<div class="card blue-grey darken-4">' +
         '<div class="card-content white-text">' +
@@ -46,13 +53,15 @@ function renderNewPostForm(groupId) {
 
 
 
-$(document).ready( () => {
+$(document).on('turbolinks:load', function () { //had to change to turbolinks:load 
+                                                // listener because of turbolinks breaking 
+                                                // jquery's ready - explained here: 
+                                                // https://stackoverflow.com/questions/18769109/rails-4-turbo-link-prevents-jquery-scripts-from-working/18770219#18770219
+    
+    
+    
+    
     $('#new_post').hide()
-})
-
-
-$(() => {
-   
     
     // the following is to render the group and posts data on the page!
     let groupId = $('.groupId').data("id")
@@ -67,10 +76,10 @@ $(() => {
         })        
     })
 
-    ///////////////////
-
     // the following renders the form when new post is clicked:
     renderNewPostForm(groupId)
+
+
 
     // this handles new post submission from that previously mentioned new_post form
     $('#new_post').submit(function (event) {
