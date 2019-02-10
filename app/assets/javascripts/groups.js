@@ -43,16 +43,33 @@ class Post {
                     '<button class="postDeleteButton" id="deletePost' +
                     this.id +
                     '">Delete</button>'
-                    // make this button actually do something pete!
+                    // make this delete button actually do something pete!
                 postCardHtml += editAndDelete
             }
         postCardHtml += '</div></div>'
         $('#group-show-post-list').prepend(postCardHtml)
+        
+        // once the post is prepended add an event listener to the posts delete button if it has one:
+        if (this.currentUserId === this.user.id){
+            this.addDeleteListener()       
+        }
+
+    }
+    
+    addDeleteListener() {
+        const buttonIdQuery = '#deletePost' + this.id
+        $(buttonIdQuery).on('click', function (event) {
+            event.preventDefault()
+            
+        })
+    }
+    deletePost(){
+        // eventually this should be a method to delete post from DB
+    }
+    removePostHtml(){
+        // eventually this should be a method to remove post from DOM        
     }
 
-    deletePost(){
-        // eventually this should be a method to remove the posts' html from the page?
-    }
 }
 
 
@@ -67,10 +84,10 @@ function newPostListener() {
 
 function deletePostListener() { // add the listeners to the post delete buttons
 
-    const deleteButtons = document.getElementsByClassName('postDeleteButton')
-    // $('.postDeleteButton') is not selecting them - WHYYYYYYY
+    // const deleteButtons = document.getElementsByClassName('postDeleteButton')
+    // const deleteButtons = $('.postDeleteButton') // is not selecting them - WHYYYYYYY
 
-    console.log(deleteButtons) // this is logging an HTML collection which won't respond to .length or array notation for some reason
+    // console.log(deleteButtons) // if I use getElementsByClassName this is logging an HTML collection which won't respond to .length or array notation for some reason
      
     // for (i = 0; i < deleteButtons.length; i++) {
         
