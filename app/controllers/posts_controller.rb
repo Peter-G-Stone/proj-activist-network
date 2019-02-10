@@ -48,8 +48,8 @@ class PostsController < ApplicationController
         @post.comments.each {|c| c.destroy}
         @post.group.update(recent_activity: Time.now)
         @post.destroy
-        flash[:notice] = "Post deleted."
-        redirect_to group_path(@post.group)
+        # flash.now[:notice] = "Post deleted."
+        # redirect_to group_path(@post.group)
     end
 
     private

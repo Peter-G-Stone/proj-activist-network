@@ -58,13 +58,22 @@ class Post {
     
     addDeleteListener() {
         const buttonIdQuery = '#deletePost' + this.id
-        $(buttonIdQuery).on('click', function (event) {
+        $(buttonIdQuery).on('click',  (event) => {
+            // on click remove post from DB and DOM
             event.preventDefault()
-            
+            this.deletePost()
+            this.removePostHtml()
         })
     }
     deletePost(){
-        // eventually this should be a method to delete post from DB
+        const urlForDelete = '/groups/' + this.groupId + '/posts/' + this.id
+        $.ajax({
+            url: urlForDelete,
+            type: 'DELETE',
+            success: function(result) {
+                //do something with result?
+            }
+        })
     }
     removePostHtml(){
         // eventually this should be a method to remove post from DOM        
