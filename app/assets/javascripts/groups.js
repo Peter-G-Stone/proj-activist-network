@@ -2,7 +2,7 @@
 
 
 
-function appendPost(post, groupId, currentUserId){
+function prependPost(post, groupId, currentUserId){
     const editUrl = "/posts/" + post.id + '/edit'
     let postCard = '<div class="card blue-grey darken-4">' +
         '<div class="card-content white-text">' +
@@ -33,7 +33,7 @@ function appendPost(post, groupId, currentUserId){
         postCard += editAndDelete
     }
     postCard += '</div></div>'
-    $('#group-show-post-list').append(postCard)
+    $('#group-show-post-list').prepend(postCard)
 }
 
 function renderNewPostForm(groupId) {
@@ -63,7 +63,7 @@ $(() => {
 
         const posts = group.posts
         posts.forEach( post => { //can I make this a reverse each?
-            appendPost(post, groupId, currentUserId)                    
+            prependPost(post, groupId, currentUserId)                    
         })        
     })
 
@@ -81,8 +81,11 @@ $(() => {
         let posting = $.post('/groups/' + groupId + '/posts', newPost)
         
         posting.done( function(post){
-            console.log(post)
-            appendPost(post, groupId, currentUserId)
+            prependPost(post, groupId, currentUserId)
+            alert('Successfully created a post!')
+            $('form').hide()
+            $('#new-post-link').show()
+
         })
 
     })
