@@ -53,15 +53,7 @@ $(document).ready( () => {
 
 $(() => {
    
-    $('#new_post').submit(function (event) {
-        event.preventDefault()
-        const newPost = $(this).serialize()
-        $.post('/groups/' + groupId + '/posts', newPost).done(newPost => {
-            console.log(newPost.content)
-            // this is logging undefined and also it's refreshing the page on submit STILL
-        })
-
-    })
+    
     // the following is to render the group and posts data on the page!
     let groupId = $('.groupId').data("id")
     let currentUserId = $('.currentUserId').data("id")
@@ -81,5 +73,15 @@ $(() => {
     renderNewPostForm(groupId)
 
     // this handles new post submission from that previously mentioned new_post form
+    $('#new_post').submit(function (event) {
+        event.preventDefault()
+        const newPost = $(this).serialize()
+        $.post('/groups/' + groupId + '/posts', newPost).done(() => {
+            console.log(newPost)
+            // this is logging undefined and also it's refreshing the page on submit STILL
+            // also when the page refreshes the posts and group data doesn't show
+        })
+
+    })
     
 })
