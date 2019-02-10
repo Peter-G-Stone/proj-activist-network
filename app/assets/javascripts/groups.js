@@ -92,12 +92,10 @@ $(document).on('turbolinks:load', function () { //had to change to turbolinks:lo
         posting.done( function(post){
             prependPost(post, groupId, currentUserId)
             alert('Successfully created a post!')            
-            // $('form').reset() // doesn't work!
             $('input[type="text"], textarea').val('')
-            // $('form').hide()
             $('#new-post-link').show()
+            $('form').hide()
         })
-
+        return false // this is what you were missing for the longest time pete!
     })
-    
 })
