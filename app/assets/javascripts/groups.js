@@ -93,26 +93,6 @@ function newPostListener() {
     })
 }
 
-function deletePostListener() { // add the listeners to the post delete buttons
-
-    // const deleteButtons = document.getElementsByClassName('postDeleteButton')
-    // const deleteButtons = $('.postDeleteButton') // is not selecting them - WHYYYYYYY
-
-    // console.log(deleteButtons) // if I use getElementsByClassName this is logging an HTML collection which won't respond to .length or array notation for some reason
-     
-    // for (i = 0; i < deleteButtons.length; i++) {
-        
-    //     console.log('hey')
-    //     console.log(deleteButtons[i])
-    // }
-    
-    // deleteButtons.forEach(button => {
-    //     button.addEventListener('click', (event) => {
-    //         event.preventDefault()
-    //         console.log('you clicked me!')
-    //     })
-    // })
-}
 
 function newPostSubmitter(groupId, currentUserId) {
     $('#new_post').submit(function (event) {
