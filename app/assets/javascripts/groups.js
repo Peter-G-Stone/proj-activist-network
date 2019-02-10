@@ -1,45 +1,65 @@
-// class Post {
-//     constructor(content)
-// }
+
+
+
+class Post {
+    constructor(post, groupId, currentUserId){
+        this.content = post.content
+        this.id = post.id 
+        this.created_at = post.created_at
+        this.user = {
+            name: post.user.name,
+            id: post.user.id
+        }
+        this.currentUserId = currentUserId
+        this.groupId = groupId
+    }
+
+    // prototype function will be to generate post card
+    postCard() {
+        let postCardHtml = '<div class="card blue-grey darken-4">' +
+            '<div class="card-content white-text">' +
+            '<span class="card-title"><a href="//localhost:3000/profiles/' +
+            this.user.id +
+            '" >' +
+            this.user.name +
+            '</a></span>' +
+            '<p><br><a href="//localhost:3000/groups/' +
+            this.groupId +
+            '/posts/' +
+            this.id +
+            '">' +
+            this.content +
+            '</a><br>Created: ' + 
+                        // previously did this strftime
+                        // <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC
+            this.created_at +
+            '</p></div>' +
+            '<div class="card-action">'
+            
+             // if the post belongs to current user, add edit and delete to card:
+            if (this.currentUserId === this.user.id){
+                const editUrl = "/posts/" + this.id + '/edit'            
+                const editAndDelete = '<p><a href="//localhost:3000/groups/'+
+                    this.groupId +
+                    editUrl +
+                    '">Edit Post</a></p>' +
+                    '<button>Delete</button>'
+                    // make this button actually do something pete!
+                postCardHtml += editAndDelete
+            }
+        postCardHtml += '</div></div>'
+        return postCardHtml
+    }
+}
 
 
 // will get the group data, allow display of posts and comments 
 
 
 
-function prependPost(post, groupId, currentUserId){
-    
-    // console.log(post)
-    const editUrl = "/posts/" + post.id + '/edit'
-    let postCard = '<div class="card blue-grey darken-4">' +
-        '<div class="card-content white-text">' +
-        '<span class="card-title"><a href="//localhost:3000/profiles/' +
-        post.user.id +
-        '" >' +
-        post.user.name +
-        '</a></span>' +
-        '<p><br><a href="//localhost:3000/groups/' +
-        groupId +
-        '/posts/' +
-        post.id +
-        '">' +
-        post.content +
-        '</a><br>Created: ' + 
-                    // previously did this strftime
-                    // <%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %> UTC
-        post.created_at +
-        '</p></div>' +
-        '<div class="card-action">'
-    if (currentUserId === post.user.id){
-        const editAndDelete = '<p><a href="//localhost:3000/groups/'+
-            groupId +
-            editUrl +
-            '">Edit Post</a></p>' +
-            '<button>Delete</button>'
-            // make this button actually do something pete!
-        postCard += editAndDelete
-    }
-    postCard += '</div></div>'
+function prependPost(post, groupId, currentUserId){    
+    let postObj = new Post(post, groupId, currentUserId)
+    let postCard = postObj.postCard()   
     $('#group-show-post-list').prepend(postCard)
 }
 
@@ -64,38 +84,40 @@ $(document).on('turbolinks:load', function () { //had to change to turbolinks:lo
     $('#new_post').hide()
     
     // the following is to render the group and posts data on the page!
-    let groupId = $('.groupId').data("id")
-    let currentUserId = $('.currentUserId').data("id")
-    $.get("/groups/" + groupId + ".json", function(group) {
-        $("#group-show-group-name").html('<h1>' + group.name + '</h1>')
-        $("#group-show-group-summary").html(group.summary)
-
-        const posts = group.posts
-        posts.forEach( post => { //can I make this a reverse each?
-            prependPost(post, groupId, currentUserId)                    
-        })        
-    })
-
-    // the following renders the form when new post is clicked:
-    renderNewPostForm(groupId)
-
-
-
-    // this handles new post submission from that previously mentioned new_post form
-    $('#new_post').submit(function (event) {
-        event.preventDefault()
-        const newPost = $('#new_post').serialize()
-        // const content = $('#post_content').val()
-        // console.log(content)
-        let posting = $.post('/groups/' + groupId + '/posts', newPost)
-        
-        posting.done( function(post){
-            prependPost(post, groupId, currentUserId)
-            alert('Successfully created a post!')            
-            $('input[type="text"], textarea').val('')
-            $('#new-post-link').show()
-            $('form').hide()
+    const groupId = $('.groupId').data("id")
+    const currentUserId = $('.currentUserId').data("id")
+    
+    
+    if ($('.groupShowPage').data("id") === 'true'){
+        $.get("/groups/" + groupId + ".json", function(group) {
+            $("#group-show-group-name").html('<h1>' + group.name + '</h1>')
+            $("#group-show-group-summary").html(group.summary)
+    
+            const posts = group.posts
+            posts.forEach( post => { 
+                prependPost(post, groupId, currentUserId)                    
+            })        
         })
-        return false // this is what you were missing for the longest time pete!
-    })
+    
+        // the following renders the form when new post is clicked:
+        renderNewPostForm(groupId)
+    
+        // this handles new post submission from that previously mentioned new_post form
+        $('#new_post').submit(function (event) {
+            event.preventDefault()
+            const newPost = $('#new_post').serialize()
+            // const content = $('#post_content').val()
+            // console.log(content)
+            let posting = $.post('/groups/' + groupId + '/posts', newPost)
+            
+            posting.done( function(post){
+                prependPost(post, groupId, currentUserId)
+                $('input[type="text"], textarea').val('')
+                $('#new-post-link').show()
+                $('form').hide()
+            })
+            return false // this is what you were missing for the longest time pete!
+        })
+    }
+    
 })
