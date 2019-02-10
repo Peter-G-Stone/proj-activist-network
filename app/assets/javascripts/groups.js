@@ -1,6 +1,3 @@
-
-
-
 class Post {
     constructor(post, groupId, currentUserId){
         this.content = post.content
@@ -53,14 +50,6 @@ class Post {
 }
 
 
-// will get the group data, allow display of posts and comments 
-
-
-
-// function prependPost(post, groupId, currentUserId){    
-//     let postObj = new Post(post, groupId, currentUserId)
-//     let postCard = postObj.postCard()   
-// }
 
 function newPostListener() {
     $('#new-post-link').on('click', function (event){
