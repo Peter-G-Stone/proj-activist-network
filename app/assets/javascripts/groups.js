@@ -75,11 +75,12 @@ $(() => {
     // this handles new post submission from that previously mentioned new_post form
     $('#new_post').submit(function (event) {
         event.preventDefault()
-        const newPost = $(this).serialize()
-        $.post('/groups/' + groupId + '/posts', newPost).done(() => {
-            console.log(newPost)
-            // this is logging undefined and also it's refreshing the page on submit STILL
-            // also when the page refreshes the posts and group data doesn't show
+        const newPost = $('#new_post')
+        const serealPost = newPost.serialize()
+        const content = $('#post_content').val()
+        console.log(content)
+        $.post('/groups/' + groupId + '/posts', serealPost).done( function(){
+
         })
 
     })
