@@ -11,9 +11,10 @@ class Post {
         this.groupId = groupId
     }
 
-    // prototype function will be to generate post card
     prependPost() {
-        let postCardHtml = '<div class="card blue-grey darken-4">' +
+        let postCardHtml = '<div id="postCard' +
+            this.id +
+            '" class="card blue-grey darken-4">' +
             '<div class="card-content white-text">' +
             '<span class="card-title"><a href="//localhost:3000/profiles/' +
             this.user.id +
@@ -76,7 +77,8 @@ class Post {
         })
     }
     removePostHtml(){
-        // eventually this should be a method to remove post from DOM        
+        const postCardQuery = '#postCard' + this.id
+        $(postCardQuery).remove()
     }
 
 }
