@@ -75,12 +75,14 @@ $(() => {
     // this handles new post submission from that previously mentioned new_post form
     $('#new_post').submit(function (event) {
         event.preventDefault()
-        const newPost = $('#new_post')
-        const serealPost = newPost.serialize()
-        const content = $('#post_content').val()
-        console.log(content)
-        $.post('/groups/' + groupId + '/posts', serealPost).done( function(){
-
+        const newPost = $('#new_post').serialize()
+        // const content = $('#post_content').val()
+        // console.log(content)
+        let posting = $.post('/groups/' + groupId + '/posts', newPost)
+        
+        posting.done( function(post){
+            console.log(post)
+            appendPost(post, groupId, currentUserId)
         })
 
     })

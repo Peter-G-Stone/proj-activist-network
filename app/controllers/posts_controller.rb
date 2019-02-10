@@ -15,6 +15,7 @@ class PostsController < ApplicationController
         if @post.save
             # @post.group.update(recent_activity: Time.now)
             # redirect_to group_path(@post.group)
+            render json: @post.to_json(include: :user), status: 201
         else
             messages = ""
             flash[:notice] = @post.errors.full_messages.map {|msg| messages + msg + ". "}[0]
