@@ -105,7 +105,7 @@ function newPostSubmitter(groupId, currentUserId) {
             postObj.prependPost()
             $('input[type="text"], textarea').val('')
             $('#new-post-link').show()
-            $('form').hide()
+            $('#new_post').hide()
         })
         return false // this is what you were missing for the longest time pete!
     })
