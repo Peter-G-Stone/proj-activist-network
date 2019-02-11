@@ -14,7 +14,7 @@ class Post {
     prependPost() {
         let postCardHtml = '<div id="postCard' +
             this.id +
-            '" class="card blue-grey darken-4">' +
+            '" class="card purple darken-4">' +
             '<div class="card-content white-text">' +
             '<span class="card-title"><a href="//localhost:3000/profiles/' +
             this.user.id +
