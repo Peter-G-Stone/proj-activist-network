@@ -8,7 +8,7 @@ Please stay tuned for further developments in the project.
 
 Download and run bundle install.
 
-run:
+run: </ br>
     > rake db:migrate db:seed
 start your server using:
     > thin start --ssl
