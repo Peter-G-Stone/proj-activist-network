@@ -29,7 +29,7 @@ peter.stone.online@gmail.com
 
 ## Authors
 
-* **Peter Stone** - *Initial work* - [PurpleBooth](https://github.com/peter-g-stone)
+* **Peter Stone** - *Initial work* - [Peter Stone](https://github.com/peter-g-stone)
 
 ## License
 
