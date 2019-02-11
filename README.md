@@ -9,11 +9,11 @@ Please stay tuned for further developments in the project.
 Download and run bundle install.
 
 run:
-     rake db:migrate db:seed
+    > rake db:migrate db:seed
 start your server using:
-    thin start --ssl
+    > thin start --ssl
 navigate to:
-    https://localhost:3000
+    > https://localhost:3000
 
     
 
