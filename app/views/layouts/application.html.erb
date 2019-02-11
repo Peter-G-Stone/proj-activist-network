@@ -13,12 +13,24 @@
   </head>
 
   <body>
-    <div class='row'> <div class='col s12 m6'>
-      <% if current_user %>
-        <%= link_to "Groups", groups_path %> |
-        <%= link_to "Recently Active Groups", recently_active_path %> |
-        <%= link_to "My Page", profile_path(current_user) %> |
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>        
+
+    <nav>
+      <div class="nav-wrapper">
+        <%= link_to "Activist Network", groups_path, class: 'brand-logo' %>
+        <% if current_user %>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><%= link_to "Recently Active Groups", recently_active_path %></li>
+          <li><%= link_to "My Page", profile_path(current_user) %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>  
+        </ul> 
+        <% else %>
+        <h1>Activist Network</h1> <br> <br>
+        <% end %>
+      </div>
+    </nav>
+  
+  
+    <div class='row'> <div class='col s12 m6'>    
         
         <%= form_tag("/search_groups", method: "get", class: 'col s6') do %>
           <div class='row'>
@@ -28,7 +40,8 @@
               <%= submit_tag("Search") %>
             </div>
           </div>
-        <% end %> 
+        <% end %>
+
         
         <%= form_tag("/search_users", method: "get", class: 'col s6') do %>
           <div class='row'>
@@ -42,9 +55,7 @@
         <br>
         
         Activist Network - Logged in as: <%= current_user.name %> <br> <br>
-      <% else %>
-        <h1>Activist Network</h1> <br> <br>
-      <% end %>
+      
       ---------------------------------------------------- <br> <br>
     </div></div>
     
