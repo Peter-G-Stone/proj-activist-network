@@ -154,11 +154,13 @@ $(document).ready(function () { //had to change to turbolinks:load
     
     
     if ($('.groupShowPage').data("id") === true){ 
+        
+
         // if this page is the group Show page, render group data, post list and handle new post submissions:
         currentUserId = $('.currentUserId').data("id")  // id of the current logged on user     
-        groupId = $('.groupId').data("id") // this is id of the current group page being shown
+        groupId = window.location.href.split('/')[4]
 
-        userPostQListener(groupId, )
+        userPostQListener()
         renderGroupAndPosts(groupId, currentUserId)                
         
         $('#new_post').hide() // hide the new post form (until it is summoned with 'new post' link via newPostListener())

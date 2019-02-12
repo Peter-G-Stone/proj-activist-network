@@ -14,4 +14,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # we uncommented this last line in order to use the JS include tags, only including groups.js on the appropriate pages:
 # previously with require_tree this was commented out!
-Rails.application.config.assets.precompile += %w( groups.js )
+Rails.application.config.assets.precompile += %w( groups.js groups_index.js)
+
+# if you want to add more js files add them here!! ^^^^^^^^^^

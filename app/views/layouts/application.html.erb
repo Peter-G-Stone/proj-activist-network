@@ -12,48 +12,49 @@
 
   </head>
 
-  <body>
+  <body class="purple">
     <nav class="purple darken-4">
       <div class='row'>
         <div class='col m12'>
           <div class="nav-wrapper">
-            <%= link_to "Activist Network", groups_path, class: 'brand-logo' %>
-            <% if current_user %>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li>Logged in as: <%= current_user.name %>  </li>
-              <li><%= link_to "Recently Active Groups", recently_active_path %></li>
-              <li><%= link_to "My Page", profile_path(current_user) %></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-              <li>
-                <form action="/search_groups" method="GET">
-                  <input type="text" placeholder="Search Groups" name="group_name_q">
-                </form>
-              </li>
+            <div class="">
+              <%= link_to "Activist Network", groups_path, class: 'brand-logo' %>
+              <% if current_user %>
+              <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 20px">
+                <li>Logged in as: <%= current_user.name %>  </li>
+                <li><%= link_to "Recently Active Groups", recently_active_path %></li>
+                <li><%= link_to "My Page", profile_path(current_user) %></li>
+                <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                <li>
+                  <form action="/search_groups" method="GET">
+                    <input type="text" placeholder="Search Groups" name="group_name_q">
+                  </form>
+                </li>
 
-        
-     
-              <!--<li><%= form_tag("/search_groups", method: "get") do %>
-                
-                    <%= label_tag(:group_name_q, "Search Groups") %>
-                    <%= text_field_tag(:group_name_q) %>
-                    <%= submit_tag("Search") %>
-                  
-              <% end %></li>
-
-              
-              <li><%= form_tag("/search_users", method: "get") do %>
-                
-                    <%= label_tag(:group_name_q, "Search Users by Username") %>
-                    <%= text_field_tag(:user_name_q) %>
-                    <%= submit_tag("Search") %>        
-                  
-
-                   ALERT ALERT - THIS HAS A CONTROLLER ACTION AND ROUTE AND EVERYTHING
-                   JUST FIGURE OUT HOW TO ADD IT TO YOUR NAVBAR!
-              <% end %></li>-->
-            </ul>             
-            <% end %>
           
+      
+                <!--<li><%= form_tag("/search_groups", method: "get") do %>
+                  
+                      <%= label_tag(:group_name_q, "Search Groups") %>
+                      <%= text_field_tag(:group_name_q) %>
+                      <%= submit_tag("Search") %>
+                    
+                <% end %></li>
+
+                
+                <li><%= form_tag("/search_users", method: "get") do %>
+                  
+                      <%= label_tag(:group_name_q, "Search Users by Username") %>
+                      <%= text_field_tag(:user_name_q) %>
+                      <%= submit_tag("Search") %>        
+                    
+
+                    ALERT ALERT - THIS HAS A CONTROLLER ACTION AND ROUTE AND EVERYTHING
+                    JUST FIGURE OUT HOW TO ADD IT TO YOUR NAVBAR!
+                <% end %></li>-->
+              </ul>             
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -68,6 +69,6 @@
     <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
     <%#--------------------------------%>
 
-    <%= yield %>
+    <div class="container"><%= yield %></div>
   </body>
 </html>
