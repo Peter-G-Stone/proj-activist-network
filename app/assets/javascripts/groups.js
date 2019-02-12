@@ -147,7 +147,7 @@ function userPostQListener(){
 }   
 
 
-$(document).on('turbolinks:load', function () { //had to change to turbolinks:load 
+$(document).ready(function () { //had to change to turbolinks:load 
     // listener because of Rails' turbolinks breaking 
     // jquery's ready - explained here: 
     // https://stackoverflow.com/questions/18769109/rails-4-turbo-link-prevents-jquery-scripts-from-working/18770219#18770219
