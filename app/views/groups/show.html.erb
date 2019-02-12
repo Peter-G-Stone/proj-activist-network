@@ -33,6 +33,7 @@
     <h1>Posts: </h1>
     <p>(Click the post's text to see its comments.)</p>
 
+
     <% if @group_users.include?(current_user) %>
         <div class='row'> <div class='col s12 m12'>
             <h5 id="new-post-link"><%= link_to "New Post", new_group_post_path(@group.id) %></h5>
@@ -46,6 +47,12 @@
                 <%= f.hidden_field :group_id, value: @group.id %>
                 <%= f.submit %>
     <% end %>
+   
+   
+    <form action="" id="userPostQForm">
+        <input type="text" name="userPostQ" id="userPostQ" placeholder="Search Posts by Username">
+        <input type="submit">
+    </form>
 
     <ul id='group-show-post-list'>
     <!-- <% @group_posts.reverse_each do |post| %>
@@ -100,3 +107,8 @@
         <%= link_to "Join Group", "/groups/#{@group.id}/join_group" %>
     <% end %>
 </div></div>
+
+
+<!--added this js include tag in order to only load groups.js where necessary (ie this page) -->
+
+<%= javascript_include_tag 'groups', 'data-turbolinks-track': 'reload' %>

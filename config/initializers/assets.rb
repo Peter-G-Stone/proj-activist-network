@@ -11,4 +11,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# we uncommented this last line in order to use the JS include tags, only including groups.js on the appropriate pages:
+# previously with require_tree this was commented out!
+Rails.application.config.assets.precompile += %w( groups.js )

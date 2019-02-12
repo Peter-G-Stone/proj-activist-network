@@ -1,3 +1,9 @@
+let groupId; 
+let currentUserId;
+let posts;
+
+
+
 class Post {
     constructor(post, groupId, currentUserId){
         this.content = post.content
@@ -54,7 +60,6 @@ class Post {
         if (this.currentUserId === this.user.id){
             this.addDeleteListener()       
         }
-
     }
     
     addDeleteListener() {
@@ -116,32 +121,51 @@ function renderGroupAndPosts(groupId, currentUserId){
         $("#group-show-group-name").html('<h1>' + group.name + '</h1>')
         $("#group-show-group-summary").html(group.summary)
         
-        const posts = group.posts
+        posts = group.posts
         posts.forEach( post => { 
             postObj = new Post (post, groupId, currentUserId) 
-            postObj.prependPost()                    
+            postObj.prependPost()                                            
         })        
     })
 }
 
+function userPostQListener(){
+    $('#userPostQForm').on('submit', function (event) {
+        event.preventDefault()
+        $('#group-show-post-list').html('')
+        
+        const userPostQ = $('#userPostQ').val().toLowerCase()
+        const postRespList = posts.filter(post => {
+            return post.user.name.toLowerCase().includes(userPostQ)
+        })
+        postRespList.forEach( post => {
+            postObj = new Post (post, groupId, currentUserId) 
+            postObj.prependPost()    
+        })
+        return false
+    })
+}   
+
 
 $(document).on('turbolinks:load', function () { //had to change to turbolinks:load 
-                                                // listener because of Rails' turbolinks breaking 
-                                                // jquery's ready - explained here: 
-                                                // https://stackoverflow.com/questions/18769109/rails-4-turbo-link-prevents-jquery-scripts-from-working/18770219#18770219
+    // listener because of Rails' turbolinks breaking 
+    // jquery's ready - explained here: 
+    // https://stackoverflow.com/questions/18769109/rails-4-turbo-link-prevents-jquery-scripts-from-working/18770219#18770219
     
     
     if ($('.groupShowPage').data("id") === true){ 
         // if this page is the group Show page, render group data, post list and handle new post submissions:
-        const groupId = $('.groupId').data("id") // this is id of the current group page being shown
-        const currentUserId = $('.currentUserId').data("id")  // id of the current logged on user     
-        
+        currentUserId = $('.currentUserId').data("id")  // id of the current logged on user     
+        groupId = $('.groupId').data("id") // this is id of the current group page being shown
+
+        userPostQListener(groupId, )
         renderGroupAndPosts(groupId, currentUserId)                
+        
         $('#new_post').hide() // hide the new post form (until it is summoned with 'new post' link via newPostListener())
+        
         newPostListener()
 
         newPostSubmitter(groupId, currentUserId) //  handles new post submission
 
-        deletePostListener() // adds listeners to delete buttons on current user's posts
     }   
 })
