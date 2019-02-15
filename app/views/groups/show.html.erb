@@ -3,7 +3,10 @@
 <%= javascript_include_tag 'groups' %>
 
 
-<div class="currentUserId" data-id="<%= current_user.id %>"></div>
+<div class="currentUserId" data-id="<%= current_user.id %>"></div><!--isn't this easily hackable peter?2 -->
+<!-- fix it: -->
+<!-- https://stackoverflow.com/questions/29737384/accessing-current-user-variable-from-application-js-in-rails-3  -->
+
 <div class="groupShowPage" data-id="true"></div>
 
 <div class="card"><div class="card-content">
