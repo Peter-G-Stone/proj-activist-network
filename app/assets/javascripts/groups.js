@@ -157,7 +157,11 @@ $(document).ready(function () { //had to change to turbolinks:load
         
 
         // if this page is the group Show page, render group data, post list and handle new post submissions:
-        currentUserId = $('.currentUserId').data("id")  // id of the current logged on user     
+        
+        
+        // ~~~~~~~~~~~ TODO ~~~~~~~~~~
+        currentUserId = $('.currentUserId').data("id")  // id of the current logged on user --- this seems unsecure, come back to change this to making a request to the api instead ~~~~~~~~~~~~~~~
+
         groupId = window.location.href.split('/')[4]
 
         userPostQListener()
