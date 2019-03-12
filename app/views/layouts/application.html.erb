@@ -12,7 +12,7 @@
 
   </head>
 
-  <body class="deep-purple">
+  <body class="deep-purple lighten-5">
     <nav class="deep-purple darken-4">
       <div class='row'>
         <div class='col m12'>
@@ -63,12 +63,16 @@
     
            
     
-    <%# these three lines are working with the devise gem:   %>
-    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-    <%#--------------------------------%>
+    
 
-    <div class="container"><%= yield %></div>
+    <div class="container">
+      <%# these three lines are working with the devise gem:   %>
+      <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+      <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+      <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+      <%#--------------------------------%>
+      
+      <%= yield %>
+    </div>
   </body>
 </html>
