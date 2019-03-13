@@ -14,7 +14,8 @@ class PostsController < ApplicationController
         @post = Post.new(content: post_params[:content], group: Group.find(post_params[:group_id]), user: current_user)
         if @post.save
             # @post.group.update(recent_activity: Time.now)
-            redirect_to group_path(@post.group)
+            # redirect_to group_path(@post.group)
+            render json: @post.to_json(include: :user), status: 201
         else
             messages = ""
             flash[:notice] = @post.errors.full_messages.map {|msg| messages + msg + ". "}[0]
@@ -47,8 +48,8 @@ class PostsController < ApplicationController
         @post.comments.each {|c| c.destroy}
         @post.group.update(recent_activity: Time.now)
         @post.destroy
-        flash[:notice] = "Post deleted."
-        redirect_to group_path(@post.group)
+        # flash.now[:notice] = "Post deleted."
+        # redirect_to group_path(@post.group)
     end
 
     private
@@ -62,7 +63,9 @@ class PostsController < ApplicationController
     end
 
     def user_is_authorized?
-        flash[:notice] = "You aren't allowed to do that!"
-        redirect_to group_post_path(@post.group, @post) unless current_user == @post.user
+        if current_user != @post.user
+            flash[:notice] = "You aren't allowed to do that!"
+            redirect_to group_post_path(@post.group, @post)
+        end
     end
 end

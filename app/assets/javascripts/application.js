@@ -13,6 +13,9 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require materialize
-//= require_tree .
+
+
+// require tree is a newbie move! it's not performant because it loads all the JS
+
+// require_tree .

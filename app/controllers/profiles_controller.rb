@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     end
    
    
-    def search
+    def search # note -- there's no search bar in the layout rn bc I'm refactoring. add one back!
       @users = User.where("name LIKE ?", "%#{params[:user_name_q]}%")
       if @users.empty?
         flash.now[:error] = "No results found for '#{params[:user_name_q]}'!" 

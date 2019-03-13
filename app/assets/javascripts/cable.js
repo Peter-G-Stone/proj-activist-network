@@ -11,3 +11,6 @@
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+
+
+// this has something to do with adding a chat feature -- come back here -- connecting two users together via websockets

@@ -12,8 +12,13 @@ class GroupsController < ApplicationController
     end
   
     def show
+      # @group is set
       @group_users = @group.users
       @group_posts = @group.posts
+      respond_to do |format|
+        format.html {render :show }
+        format.json {render json: @group.to_json(include: { posts: {include: [:user, :comments]}})}
+      end
     end
   
     def new
@@ -74,10 +79,12 @@ class GroupsController < ApplicationController
 
     def search
       @groups = Group.where("name LIKE ?", "%#{params[:group_name_q]}%")
-      if @groups.empty?
+      if params[:group_name_q] == ''
+        flash.now[:error] = "You searched for nothing! That returns everything! Deep."
+      elsif @groups.empty?
         flash.now[:error] = "No results found for '#{params[:group_name_q]}'!" 
       else
-        flash.now[:notice] = "Here are your search results for '#{params[:group_name_q]}'."
+        flash.now[:notice] = "Here are your search results for '#{params[:group_name_q]}'"
       end
       render 'index'
     end

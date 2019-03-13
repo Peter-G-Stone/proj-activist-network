@@ -5,44 +5,74 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 
 
   </head>
 
-  <body>
-    <% if current_user %>
-      <%= link_to "Groups", groups_path %> |
-      <%= link_to "Recently Active Groups", recently_active_path %> |
-      <%= link_to "My Page", profile_path(current_user) %> |
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-      <br> <br>
-      <%= form_tag("/search_groups", method: "get") do %>
-        <%= label_tag(:group_name_q, "Search Groups:") %>
-        <%= text_field_tag(:group_name_q) %>
-        <%= submit_tag("Search") %>
-      <% end %>
-      <%= form_tag("/search_users", method: "get") do %>
-        <%= label_tag(:group_name_q, "Search Users by Username:") %>
-        <%= text_field_tag(:user_name_q) %>
-        <%= submit_tag("Search") %>
-      <% end %>
-      <br><br>
-      Activist Network - Logged in as: <%= current_user.name %> <br> <br>
-    <% else %>
-      <h1>Activist Network</h1> <br> <br>
-    <% end %>
-    ---------------------------------------------------- <br> <br>
-    
-    
-    <%# these three lines are working with the devise gem:   %>
-    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-    <%#--------------------------------%>
+  <body class="deep-purple lighten-5">
+    <nav class="deep-purple darken-4">
+      <div class='row'>
+        <div class='col m12'>
+          <div class="nav-wrapper">
+            <div class="">
+              <%= link_to "Activist Network", groups_path, class: 'brand-logo' %>
+              <% if current_user %>
+              <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 20px">
+                <li>Logged in as: <%= current_user.name %>  </li>
+                <li><%= link_to "Recently Active Groups", recently_active_path %></li>
+                <li><%= link_to "My Page", profile_path(current_user) %></li>
+                <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                <li>
+                  <form action="/search_groups" method="GET">
+                    <input type="text" placeholder="Search Groups" name="group_name_q">
+                  </form>
+                </li>
 
-    <%= yield %>
+          
+      
+                <!--<li><%= form_tag("/search_groups", method: "get") do %>
+                  
+                      <%= label_tag(:group_name_q, "Search Groups") %>
+                      <%= text_field_tag(:group_name_q) %>
+                      <%= submit_tag("Search") %>
+                    
+                <% end %></li>
+
+                
+                <li><%= form_tag("/search_users", method: "get") do %>
+                  
+                      <%= label_tag(:group_name_q, "Search Users by Username") %>
+                      <%= text_field_tag(:user_name_q) %>
+                      <%= submit_tag("Search") %>        
+                    
+
+                    ALERT ALERT - THIS HAS A CONTROLLER ACTION AND ROUTE AND EVERYTHING
+                    JUST FIGURE OUT HOW TO ADD IT TO YOUR NAVBAR!
+                <% end %></li>-->
+              </ul>             
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+    
+           
+    
+    
+
+    <div class="container">
+      <%# these three lines are working with the devise gem:   %>
+      <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+      <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+      <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+      <%#--------------------------------%>
+      
+      <%= yield %>
+    </div>
   </body>
 </html>
