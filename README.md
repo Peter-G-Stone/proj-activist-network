@@ -1,10 +1,38 @@
-# Activist Network
+## Project Title
 
-The purpose of this project is to create the optimal social network for connecting progressive activist groups in order to encourage collaboration and coordination.
-Please stay tuned for further developments in the project.
+Activist Network
 
+## Description
 
-### Installing
+Aims to provide a niche, pared down social network geared towards activism and campaigning.
+
+## Demo
+
+https://youtu.be/IL4W5XU3nz0
+
+## Technology Used
+
+Ruby on Rails
+* bcrypt gem
+* Omniauth gem
+
+CSS
+* Materialize library
+
+Javascript
+* JQuery
+* AJAX
+
+### Features
+
+* Native user account creation and validation. 
+* Sign in with Facebook. 
+* Create groups. 
+* You can join groups, post in them, comment on posts, see which other users belong. * Look at other users profile pages and see where users have joined, posted, commented. 
+* See recently active groups. 
+* Search groups by name.
+
+## Installation
 
 Download and run bundle install.
 
